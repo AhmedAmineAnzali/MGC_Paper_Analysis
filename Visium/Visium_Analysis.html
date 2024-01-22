@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Ahmed-Amine Anzali, Institut Gustave Roussy, INSERM U1015, Ecole Polytechnique">
+
+<title>Visium Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="Visium_Analysis_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Visium_Analysis_files/libs/quarto-html/quarto.js"></script>
+<script src="Visium_Analysis_files/libs/quarto-html/popper.min.js"></script>
+<script src="Visium_Analysis_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Visium_Analysis_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Visium_Analysis_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Visium_Analysis_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Visium_Analysis_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Visium_Analysis_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Visium_Analysis_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#merging-visium-slides" id="toc-merging-visium-slides" class="nav-link active" data-scroll-target="#merging-visium-slides"><span class="toc-section-number">1</span>  Merging Visium Slides</a>
+  <ul class="collapse">
+  <li><a href="#metadata-for-slides" id="toc-metadata-for-slides" class="nav-link" data-scroll-target="#metadata-for-slides"><span class="toc-section-number">1.1</span>  Metadata for Slides</a></li>
+  <li><a href="#sequencing-qc-of-visium-slides" id="toc-sequencing-qc-of-visium-slides" class="nav-link" data-scroll-target="#sequencing-qc-of-visium-slides"><span class="toc-section-number">1.2</span>  Sequencing QC of Visium Slides</a></li>
+  </ul></li>
+  <li><a href="#mgc-spots---identification-of-signature" id="toc-mgc-spots---identification-of-signature" class="nav-link" data-scroll-target="#mgc-spots---identification-of-signature"><span class="toc-section-number">2</span>  MGC spots - Identification of Signature</a>
+  <ul class="collapse">
+  <li><a href="#volcano-plot-with-mgc-spots-signature" id="toc-volcano-plot-with-mgc-spots-signature" class="nav-link" data-scroll-target="#volcano-plot-with-mgc-spots-signature"><span class="toc-section-number">2.1</span>  Volcano Plot with MGC spots signature</a></li>
+  <li><a href="#gene-ontology-analysis" id="toc-gene-ontology-analysis" class="nav-link" data-scroll-target="#gene-ontology-analysis"><span class="toc-section-number">2.2</span>  Gene ontology analysis</a></li>
+  </ul></li>
+  <li><a href="#integration-with-rpca-of-the-different-slides" id="toc-integration-with-rpca-of-the-different-slides" class="nav-link" data-scroll-target="#integration-with-rpca-of-the-different-slides"><span class="toc-section-number">3</span>  Integration with rpca of the different slides</a></li>
+  <li><a href="#focus-on-one-slide---enhancement-with-bayesspace" id="toc-focus-on-one-slide---enhancement-with-bayesspace" class="nav-link" data-scroll-target="#focus-on-one-slide---enhancement-with-bayesspace"><span class="toc-section-number">4</span>  Focus on one slide - Enhancement with BayesSpace</a></li>
+  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info"><span class="toc-section-number">5</span>  Session Info</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Visium Analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Ahmed-Amine Anzali, Institut Gustave Roussy, INSERM U1015, Ecole Polytechnique </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Importing libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">require</span>(Matrix))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">require</span>(dplyr))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">require</span>(Seurat))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">require</span>(ggplot2))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">require</span>(patchwork))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">require</span>(dplyr))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">require</span>(dittoSeq))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">require</span>(scCustomize))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">require</span>(clusterProfiler))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">require</span>(org.Hs.eg.db))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'S4Vectors' was built under R version 4.2.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">require</span>(DOSE))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">require</span>(enrichplot))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">require</span>(ReactomePA))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">require</span>(speckle))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">require</span>(ggpubr))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">require</span>(BayesSpace))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'GenomicRanges' was built under R version 4.2.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'GenomeInfoDb' was built under R version 4.2.2</code></pre>
+</div>
+</div>
+<section id="merging-visium-slides" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Merging Visium Slides</h1>
+<p>9 different patients selected by a pathologist were selected for spatial analysis with the Visium kit, one of the patient had 3 different H&amp;E slides analyzed.</p>
+<p>3 of the patients were classified as <span class="math inline">\(MGC_{low}\)</span>, the remaining 6 were all <span class="math inline">\(MGC_{high}\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Function for reading the different visium slides</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>read_file <span class="ot">&lt;-</span> <span class="cf">function</span>(Data){</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  Data <span class="ot">&lt;-</span> Seurat<span class="sc">::</span><span class="fu">Load10X_Spatial</span>(Data)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>file_names <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">"Raw_Visium/"</span>,<span class="at">full.names =</span> F)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(file <span class="cf">in</span> file_names){</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">assign</span>(file, <span class="fu">read_file</span>(<span class="fu">paste0</span>(<span class="st">"Raw_Visium/"</span>,file)))</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reading the spot IDs for manual annotation of MGC spots on the different slides</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>file_names_2 <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">"MGC_IDs/"</span>,<span class="at">full.names =</span> F)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(file <span class="cf">in</span> file_names_2){</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">assign</span>(file, <span class="fu">read.csv</span>(<span class="fu">paste0</span>(<span class="st">"MGC_IDs/"</span>,file)))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="metadata-for-slides" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="metadata-for-slides"><span class="header-section-number">1.1</span> Metadata for Slides</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">####Add Metadata to integrated seurat slides####</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Batch ID Metadata</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Slide_A1<span class="sc">$</span>Batch <span class="ot">&lt;-</span> <span class="st">'B1'</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>Slide_B1<span class="sc">$</span>Batch <span class="ot">&lt;-</span> <span class="st">'B2'</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>Slide_D1<span class="sc">$</span>Batch <span class="ot">&lt;-</span> <span class="st">'B3'</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>Slide_C1<span class="sc">$</span>Batch <span class="ot">&lt;-</span> <span class="st">'B4'</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>T4_S1_05H04724_09<span class="sc">$</span>Batch <span class="ot">&lt;-</span> <span class="st">'B5'</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>T4_S2_10H02587_08<span class="sc">$</span>Batch <span class="ot">&lt;-</span> <span class="st">'B6'</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>T4_S4_16H02168_56_Zone2<span class="sc">$</span>Batch <span class="ot">&lt;-</span> <span class="st">'B7'</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>Test9_S2_13H02127_09<span class="sc">$</span>Batch <span class="ot">&lt;-</span> <span class="st">'B8'</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>Test9_S1_05H00073_12<span class="sc">$</span>Batch <span class="ot">&lt;-</span> <span class="st">'B9'</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>Test9_S3_21R00383_Zone1<span class="sc">$</span>Batch <span class="ot">&lt;-</span> <span class="st">'B10'</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>Test9_S3_21R00383_Zone2<span class="sc">$</span>Batch <span class="ot">&lt;-</span> <span class="st">'B11'</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Patient ID Metadata</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>Slide_A1<span class="sc">$</span>PatientID <span class="ot">&lt;-</span> <span class="st">'P1'</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>Slide_B1<span class="sc">$</span>PatientID <span class="ot">&lt;-</span> <span class="st">'P2'</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>Slide_D1<span class="sc">$</span>PatientID <span class="ot">&lt;-</span> <span class="st">'P3'</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>Slide_C1<span class="sc">$</span>PatientID <span class="ot">&lt;-</span> <span class="st">'P4'</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>T4_S1_05H04724_09<span class="sc">$</span>PatientID <span class="ot">&lt;-</span> <span class="st">'P5'</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>T4_S2_10H02587_08<span class="sc">$</span>PatientID <span class="ot">&lt;-</span> <span class="st">'P6'</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>T4_S4_16H02168_56_Zone2<span class="sc">$</span>PatientID <span class="ot">&lt;-</span> <span class="st">'P7'</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>Test9_S2_13H02127_09<span class="sc">$</span>PatientID <span class="ot">&lt;-</span> <span class="st">'P8'</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>Test9_S1_05H00073_12<span class="sc">$</span>PatientID <span class="ot">&lt;-</span> <span class="st">'P9'</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>Test9_S3_21R00383_Zone1<span class="sc">$</span>PatientID <span class="ot">&lt;-</span> <span class="st">'P9'</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>Test9_S3_21R00383_Zone2<span class="sc">$</span>PatientID <span class="ot">&lt;-</span> <span class="st">'P9'</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="co">#MGC Metadata</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>Slide_A1<span class="sc">$</span>MGC <span class="ot">&lt;-</span> <span class="st">'MGC Low'</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>Slide_B1<span class="sc">$</span>MGC <span class="ot">&lt;-</span> <span class="st">'MGC Low'</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>Slide_D1<span class="sc">$</span>MGC <span class="ot">&lt;-</span> <span class="st">'MGC Low'</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>Slide_C1<span class="sc">$</span>MGC <span class="ot">&lt;-</span> <span class="st">'MGC High'</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>T4_S1_05H04724_09<span class="sc">$</span>MGC <span class="ot">&lt;-</span> <span class="st">'MGC High'</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>T4_S2_10H02587_08<span class="sc">$</span>MGC <span class="ot">&lt;-</span> <span class="st">'MGC High'</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>T4_S4_16H02168_56_Zone2<span class="sc">$</span>MGC <span class="ot">&lt;-</span> <span class="st">'MGC High'</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>Test9_S2_13H02127_09<span class="sc">$</span>MGC <span class="ot">&lt;-</span> <span class="st">'MGC High'</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>Test9_S1_05H00073_12<span class="sc">$</span>MGC <span class="ot">&lt;-</span> <span class="st">'MGC High'</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>Test9_S3_21R00383_Zone1<span class="sc">$</span>MGC <span class="ot">&lt;-</span> <span class="st">'MGC High'</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>Test9_S3_21R00383_Zone2<span class="sc">$</span>MGC <span class="ot">&lt;-</span> <span class="st">'MGC High'</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="co">#MGC Spot Annotations - Pathologist</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>Slide_A1<span class="sc">$</span>MGC_Spot_Only <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>Slide_B1<span class="sc">$</span>MGC_Spot_Only <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>Slide_D1<span class="sc">$</span>MGC_Spot_Only <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>Slide_C1<span class="sc">$</span>MGC_Spot_Only <span class="ot">&lt;-</span> MGC_C1.csv<span class="sc">$</span>MGC</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>T4_S1_05H04724_09<span class="sc">$</span>MGC_Spot_Only <span class="ot">&lt;-</span> MGC_050H04724.csv<span class="sc">$</span>MGC</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>T4_S2_10H02587_08<span class="sc">$</span>MGC_Spot_Only <span class="ot">&lt;-</span> <span class="st">`</span><span class="at">MGC_C1_10H02587-08.csv</span><span class="st">`</span><span class="sc">$</span>MGC</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>T4_S4_16H02168_56_Zone2<span class="sc">$</span>MGC_Spot_Only <span class="ot">&lt;-</span> <span class="st">`</span><span class="at">MGC_D1_16H02168-56-z01.csv</span><span class="st">`</span><span class="sc">$</span>MGC</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>Test9_S2_13H02127_09<span class="sc">$</span>MGC_Spot_Only <span class="ot">&lt;-</span> <span class="st">`</span><span class="at">MGC_B1_13H02127-09..csv</span><span class="st">`</span><span class="sc">$</span>MGC</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>Test9_S1_05H00073_12<span class="sc">$</span>MGC_Spot_Only <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>Test9_S3_21R00383_Zone1<span class="sc">$</span>MGC_Spot_Only <span class="ot">&lt;-</span> <span class="st">`</span><span class="at">MGC_C1_16H02168-56-z02.csv</span><span class="st">`</span><span class="sc">$</span>MGC</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>Test9_S3_21R00383_Zone2<span class="sc">$</span>MGC_Spot_Only <span class="ot">&lt;-</span> <span class="st">`</span><span class="at">MGC_D1_16H02168-56-z01_V2.csv</span><span class="st">`</span><span class="sc">$</span>MGC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Merging different slides</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Visium <span class="ot">&lt;-</span> <span class="fu">merge</span>(Slide_A1, <span class="at">y =</span> <span class="fu">c</span>(Slide_B1,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                                Slide_C1,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                                Slide_D1,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                                T4_S1_05H04724_09,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                                T4_S2_10H02587_08,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                                T4_S4_16H02168_56_Zone2,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>                                Test9_S1_05H00073_12,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>                                Test9_S2_13H02127_09,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                                Test9_S3_21R00383_Zone1,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>                                Test9_S3_21R00383_Zone2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in CheckDuplicateCellNames(object.list = objects): Some cell names are
+duplicated across objects provided. Renaming to enforce unique cell names.</code></pre>
+</div>
+</div>
+</section>
+<section id="sequencing-qc-of-visium-slides" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="sequencing-qc-of-visium-slides"><span class="header-section-number">1.2</span> Sequencing QC of Visium Slides</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Quality control of the data</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>Seurat<span class="sc">::</span><span class="fu">VlnPlot</span>(Visium, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"nCount_Spatial"</span>, <span class="st">"nFeature_Spatial"</span>), <span class="at">pt.size =</span> <span class="fl">0.1</span>, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">log =</span>T,<span class="at">group.by =</span> <span class="st">'Batch'</span>) <span class="sc">+</span> Seurat<span class="sc">::</span><span class="fu">NoLegend</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="1440"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filtering out low quality reads</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>Visium <span class="ot">&lt;-</span> Visium[, Visium<span class="sc">$</span>nFeature_Spatial <span class="sc">&gt;</span> <span class="dv">500</span> <span class="sc">&amp;</span> Visium<span class="sc">$</span>nCount_Spatial <span class="sc">&gt;</span> <span class="dv">500</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Seurat<span class="sc">::</span><span class="fu">SpatialFeaturePlot</span>(Visium, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"nCount_Spatial"</span>),<span class="at">ncol =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="1920"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Seurat<span class="sc">::</span><span class="fu">SpatialFeaturePlot</span>(Visium, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"nFeature_Spatial"</span>), <span class="at">ncol =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="1920"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Highly expressed genes</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>C <span class="ot">=</span> Visium<span class="sc">@</span>assays<span class="sc">$</span>Spatial<span class="sc">@</span>counts</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>C<span class="sc">@</span>x <span class="ot">=</span> C<span class="sc">@</span>x<span class="sc">/</span><span class="fu">rep.int</span>(<span class="fu">colSums</span>(C), <span class="fu">diff</span>(C<span class="sc">@</span>p))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>most_expressed <span class="ot">&lt;-</span> <span class="fu">order</span>(Matrix<span class="sc">::</span><span class="fu">rowSums</span>(C), <span class="at">decreasing =</span> T)[<span class="dv">20</span><span class="sc">:</span><span class="dv">1</span>]</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="fu">as.matrix</span>(<span class="fu">t</span>(C[most_expressed, ])), <span class="at">cex =</span> <span class="fl">0.1</span>, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">xlab =</span> <span class="st">"% total count per cell"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> (scales<span class="sc">::</span><span class="fu">hue_pal</span>())(<span class="dv">20</span>)[<span class="dv">20</span><span class="sc">:</span><span class="dv">1</span>], <span class="at">horizontal =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="mgc-spots---identification-of-signature" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> MGC spots - Identification of Signature</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Idents</span>(Visium) <span class="ot">&lt;-</span> Visium<span class="sc">$</span>MGC_Spot_Only</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>MGC_Markers <span class="ot">&lt;-</span> <span class="fu">FindMarkers</span>(Visium,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">ident.1 =</span> <span class="st">'MGC only'</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">logfc.threshold =</span> <span class="dv">0</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">min.pct =</span> <span class="fl">0.25</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">only.pos =</span> T,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>                           <span class="at">test.use =</span> <span class="st">'wilcox'</span>,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>                           <span class="at">densify =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in asMethod(object): sparse-&gt;dense coercion: allocating vector of size
+1.0 GiB</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>MGC_Markers<span class="sc">$</span>gene <span class="ot">&lt;-</span> <span class="fu">rownames</span>(MGC_Markers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="volcano-plot-with-mgc-spots-signature" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="volcano-plot-with-mgc-spots-signature"><span class="header-section-number">2.1</span> Volcano Plot with MGC spots signature</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>EnhancedVolcano<span class="sc">::</span><span class="fu">EnhancedVolcano</span>(MGC_Markers,</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">lab =</span> <span class="fu">rownames</span>(MGC_Markers),</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">x =</span> <span class="st">"avg_log2FC"</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="st">"p_val_adj"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">title =</span> <span class="st">""</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">selectLab =</span> <span class="fu">toupper</span>(<span class="fu">c</span>(<span class="st">"Marco"</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"Chit1"</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"Arg1"</span>,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"Fbp1"</span>,</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"Spp1"</span>,</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"Chi3l1"</span>,</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Fbp1'</span>,</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"Trem2"</span>,</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"Ctss"</span>,</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Cd68'</span>,</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"Ctsb"</span>,</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Ctsd'</span>,</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Ctsz'</span>,</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Tyrobp'</span>,</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Chi3l1'</span>,</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Apoe'</span>,</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Dcstamp'</span>,</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Mmp9'</span>)),</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>                <span class="at">xlab =</span> <span class="fu">bquote</span>(<span class="sc">~</span>Log[<span class="dv">2</span>]<span class="sc">~</span> <span class="st">"fold change"</span>),</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>                <span class="at">ylab =</span> <span class="fu">bquote</span>(<span class="sc">~-</span>Log[<span class="dv">10</span>]<span class="sc">~</span>adjusted<span class="sc">~</span><span class="fu">italic</span>(P)),</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>                <span class="at">pCutoff =</span> <span class="fl">0.05</span>,</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>                <span class="at">FCcutoff =</span> <span class="fl">0.25</span>,</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>                <span class="at">colAlpha =</span> <span class="dv">1</span>,</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>                <span class="at">legendPosition =</span> <span class="st">""</span>,</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>                <span class="at">legendLabSize =</span> <span class="dv">10</span>,</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>                <span class="at">legendIconSize =</span> <span class="fl">3.0</span>,</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>                <span class="at">border =</span> <span class="st">"full"</span>,</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>                <span class="at">borderColour =</span> <span class="st">"black"</span>,</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>                <span class="at">gridlines.major =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>                <span class="at">gridlines.minor =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>                <span class="at">drawConnectors =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>                <span class="at">widthConnectors =</span> <span class="dv">1</span>,</span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>                <span class="at">colConnectors =</span> <span class="st">'black'</span>,</span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>                <span class="at">xlim =</span> (<span class="dv">0</span>),</span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>                <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">400</span>) ,</span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>                <span class="at">boxedLabels =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>                <span class="at">labCol =</span> <span class="st">'black'</span>,</span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>                <span class="at">labFace =</span> <span class="st">'bold'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: One or more p-values is 0. Converting to 10^-1 * current lowest
+non-zero p-value...</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 rows containing missing values (`geom_vline()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#saving statistically significant genes into a csv and log2FC &gt;= 0.25</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>MGC_Markers <span class="ot">&lt;-</span> <span class="fu">subset</span>(MGC_Markers, <span class="fu">rowSums</span>(MGC_Markers[<span class="dv">5</span>] <span class="sc">&lt;</span> <span class="fl">0.05</span>) <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>MGC_Markers <span class="ot">&lt;-</span> <span class="fu">subset</span>(MGC_Markers, MGC_Markers[<span class="dv">2</span>] <span class="sc">&gt;</span> <span class="fl">0.25</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(MGC_Markers, <span class="at">file=</span><span class="st">"Visium_MGC_Signature.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="gene-ontology-analysis" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="gene-ontology-analysis"><span class="header-section-number">2.2</span> Gene ontology analysis</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#subset on genes with log2FC &gt;= 1.5 for GO analysis</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>MGC_Markers <span class="ot">&lt;-</span> <span class="fu">subset</span>(MGC_Markers, MGC_Markers[<span class="dv">2</span>] <span class="sc">&gt;</span> <span class="fl">1.5</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#ClusterProfiler</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>signif_genes <span class="ot">&lt;-</span> <span class="fu">rownames</span>(MGC_Markers)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>all_genes <span class="ot">&lt;-</span> <span class="fu">rownames</span>(Visium)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Run GO enrichment analysis</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>ego <span class="ot">&lt;-</span> <span class="fu">enrichGO</span>(<span class="at">gene =</span> signif_genes,</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">universe =</span> all_genes,</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">keyType =</span> <span class="st">"SYMBOL"</span>,</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">OrgDb =</span> org.Hs.eg.db,</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">ont =</span> <span class="st">"BP"</span>,</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">pAdjustMethod =</span> <span class="st">"BH"</span>,</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">qvalueCutoff =</span> <span class="fl">0.05</span>,</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">readable =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Output results from GO analysis to a table</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>edox2 <span class="ot">&lt;-</span> <span class="fu">pairwise_termsim</span>(ego)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">treeplot</span>(edox2,<span class="at">showCategory =</span> <span class="dv">75</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="1920"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cluster_summary <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ego)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>cluster_summary <span class="ot">&lt;-</span> cluster_summary[cluster_summary<span class="sc">$</span>p.adjust <span class="sc">&lt;</span> <span class="fl">0.005</span>,]</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>cluster_summary <span class="ot">&lt;-</span> cluster_summary[<span class="fu">order</span>(cluster_summary<span class="sc">$</span>p.adjust),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>gg1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cluster_summary,</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Description,p.adjust), <span class="at">y =</span> <span class="sc">-</span><span class="fu">log10</span>(p.adjust), <span class="at">size =</span> <span class="sc">-</span><span class="fu">log10</span>(p.adjust), <span class="at">fill =</span> <span class="sc">-</span><span class="fu">log10</span>(p.adjust))) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">y =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>) <span class="sc">+</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">12.5</span>)) <span class="sc">+</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">low =</span> <span class="st">'royalblue'</span>, <span class="at">high =</span> <span class="st">'red4'</span>) <span class="sc">+</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">''</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">'Enrichment score'</span>) <span class="sc">+</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">'GO Biological processes'</span>,</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">'Enriched Terms'</span>,</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">'Cut-off lines drawn at equivalents of p=0.05, p=0.01, p=0.001'</span>) <span class="sc">+</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span>), <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.01</span>), <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.001</span>)),</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="fu">c</span>(<span class="st">"dotted"</span>, <span class="st">"longdash"</span>, <span class="st">"solid"</span>),</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"black"</span>, <span class="st">"black"</span>),</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="dv">3</span>)) <span class="sc">+</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">24</span>) <span class="sc">+</span></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">'right'</span>,</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.background =</span> <span class="fu">element_rect</span>(),</span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">'bold'</span>, <span class="at">vjust =</span> <span class="dv">1</span>),</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">'bold'</span>, <span class="at">vjust =</span> <span class="dv">1</span>),</span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">'bold'</span>, <span class="at">vjust =</span> <span class="dv">1</span>),</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">'bold'</span>, <span class="at">hjust =</span> <span class="fl">1.10</span>),</span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">'bold'</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>,<span class="at">color =</span> cluster_summary<span class="sc">$</span>TopicNum),</span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">'bold'</span>),</span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">'bold'</span>),</span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">'bold'</span>),</span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">'black'</span>),</span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Legend</span></span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.key =</span> <span class="fu">element_blank</span>(), <span class="co"># removes the border</span></span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>), <span class="co"># Sets overall area/size of the legend</span></span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>), <span class="co"># Text size</span></span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>)) <span class="sc">+</span></span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>gg1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="1920"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="integration-with-rpca-of-the-different-slides" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Integration with rpca of the different slides</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking for batch effects and correcting for them by integration</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>Visium <span class="ot">&lt;-</span> <span class="fu">SCTransform</span>(Visium, <span class="at">assay =</span> <span class="st">"Spatial"</span>, <span class="at">verbose =</span> <span class="cn">TRUE</span>, <span class="at">method =</span> <span class="st">"poisson"</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>Visium.list <span class="ot">&lt;-</span> <span class="fu">SplitObject</span>(Visium, <span class="at">split.by =</span> <span class="st">"Batch"</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>features <span class="ot">&lt;-</span> <span class="fu">SelectIntegrationFeatures</span>(<span class="at">object.list =</span> Visium.list, <span class="at">nfeatures =</span> <span class="dv">3000</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>Visium.list <span class="ot">&lt;-</span> <span class="fu">PrepSCTIntegration</span>(<span class="at">object.list =</span> Visium.list, <span class="at">anchor.features =</span> features)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>Visium.list <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="at">X =</span> Visium.list, <span class="at">FUN =</span> RunPCA, <span class="at">features =</span> features)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>anchors <span class="ot">&lt;-</span> <span class="fu">FindIntegrationAnchors</span>(<span class="at">object.list =</span> Visium.list, <span class="at">normalization.method =</span> <span class="st">"SCT"</span>,<span class="at">anchor.features =</span> features, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>, <span class="at">reduction =</span> <span class="st">"rpca"</span>, <span class="at">k.anchor =</span> <span class="dv">20</span>)</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>Visium.combined.sct <span class="ot">&lt;-</span> <span class="fu">IntegrateData</span>(<span class="at">anchorset =</span> anchors, <span class="at">normalization.method =</span> <span class="st">"SCT"</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>)</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>Visium.combined.sct <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(Visium.combined.sct, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>Visium.combined.sct <span class="ot">&lt;-</span> <span class="fu">RunUMAP</span>(Visium.combined.sct, <span class="at">reduction =</span> <span class="st">"pca"</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>)</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>Visium.combined.sct <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(Visium.combined.sct, <span class="at">reduction =</span> <span class="st">"pca"</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>)</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>Visium.combined.sct <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(Visium.combined.sct, <span class="at">resolution =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># differential expression </span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># find markers for every cluster compared to all remaining cells, report only the positive ones</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>Visium.combined.sct <span class="ot">&lt;-</span> <span class="fu">PrepSCTFindMarkers</span>(Visium.combined.sct)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>pbmc.markers <span class="ot">&lt;-</span> <span class="fu">FindAllMarkers</span>(Visium.combined.sct, </span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>                               <span class="at">only.pos =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>                               <span class="at">min.pct =</span> <span class="fl">0.25</span>, </span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>                               <span class="at">logfc.threshold =</span> <span class="dv">1</span>,</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>                               <span class="at">test.use =</span> <span class="st">'LR'</span>,</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>                               <span class="at">max.cells.per.ident =</span> <span class="dv">2000</span>)</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>pbmc.markers <span class="sc">%&gt;%</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="at">n =</span> <span class="dv">4</span>, <span class="at">wt =</span> avg_log2FC) <span class="ot">-&gt;</span> top4</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="fu">DoHeatmap</span>(Visium.combined.sct, <span class="at">features =</span> top4<span class="sc">$</span>gene) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>new.cluster.ids <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Muscle cells"</span>,<span class="st">"Immune cells"</span>,<span class="st">"Muscle cells"</span>,<span class="st">"Fibroblasts/Connective"</span>,<span class="st">"Tumor cells"</span>,<span class="st">"Immune cells"</span>,<span class="st">"Tumor cells"</span>,<span class="st">"Immune cells"</span>,<span class="st">"Glands"</span>,<span class="st">"Muscle cells"</span>,<span class="st">"MGCs"</span>,<span class="st">"Tumor cells"</span>,<span class="st">"Tumor cells"</span>,<span class="st">"Immune cells"</span>,<span class="st">"Tumor cells"</span>,<span class="st">"Muscle cells"</span>,<span class="st">"Muscle cells"</span>,<span class="st">"Tumor cells"</span>,<span class="st">"Tumor cells"</span>,<span class="st">"Tumor cells"</span>,<span class="st">"Tumor cells"</span>,<span class="st">"Unidentified"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(new.cluster.ids) <span class="ot">&lt;-</span> <span class="fu">levels</span>(Visium.combined.sct)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>Visium.combined.sct <span class="ot">&lt;-</span> <span class="fu">RenameIdents</span>(Visium.combined.sct, new.cluster.ids)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>Visium.combined.sct<span class="sc">$</span>Clusters <span class="ot">&lt;-</span> <span class="fu">Idents</span>(Visium.combined.sct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>Visium.combined.sct<span class="sc">$</span>MGC_Spot_Only <span class="ot">&lt;-</span> Visium<span class="sc">$</span>MGC_Spot_Only</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>Visium.combined.sct<span class="sc">$</span>MGC_Spot_Only <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(Visium.combined.sct<span class="sc">$</span>MGC_Spot_Only)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>Visium.combined.sct<span class="sc">$</span>MGC_Spot_Only[Visium.combined.sct<span class="sc">$</span>MGC_Spot_Only <span class="sc">!=</span> <span class="st">'MGC only'</span>] <span class="ot">&lt;-</span> <span class="st">'NA'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>Visium.combined.sct <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="at">file =</span> <span class="st">'immune.combined.sct.rds'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Muscle cells'</span> <span class="ot">=</span> <span class="st">"#DE9ED6"</span>,</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Immune cells'</span> <span class="ot">=</span> <span class="st">"#FD7446"</span>, </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Fibroblasts/Connective'</span> <span class="ot">=</span> <span class="st">"#31A354"</span>,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Tumor cells'</span> <span class="ot">=</span> <span class="st">"#709AE1"</span>, </span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Glands'</span> <span class="ot">=</span> <span class="st">"#DADAEB"</span>, </span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">'MGCs'</span><span class="ot">=</span><span class="st">"yellow"</span>, </span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Unidentified'</span> <span class="ot">=</span> <span class="st">"#9EDAE5"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Idents</span>(Visium.combined.sct) <span class="ot">&lt;-</span> Visium.combined.sct<span class="sc">$</span>Clusters</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">DimPlot_scCustom</span>(Visium.combined.sct, </span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">reduction =</span> <span class="st">"umap"</span>, </span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">label =</span> F, </span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">colors_use =</span> colors,</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">figure_plot =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>Visium.combined.sct <span class="ot">&lt;-</span> <span class="fu">PrepSCTFindMarkers</span>(Visium.combined.sct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Minimum UMI unchanged. Skipping re-correction.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>Visium.markers <span class="ot">&lt;-</span> <span class="fu">FindAllMarkers</span>(Visium.combined.sct, </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">only.pos =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">min.pct =</span> <span class="fl">0.25</span>, </span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">logfc.threshold =</span> <span class="dv">1</span>,</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">test.use =</span> <span class="st">'LR'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Calculating cluster Muscle cells</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The following arguments are not used: norm.method</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Calculating cluster Immune cells</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The following arguments are not used: norm.method</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Calculating cluster Fibroblasts/Connective</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The following arguments are not used: norm.method</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Calculating cluster Tumor cells</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The following arguments are not used: norm.method</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Calculating cluster Glands</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The following arguments are not used: norm.method</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Calculating cluster MGCs</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The following arguments are not used: norm.method</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Calculating cluster Unidentified</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The following arguments are not used: norm.method</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(Visium.markers, <span class="st">'Visium_Clusters_DEGs_LR_test_LFC_1.csv'</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>top5_markers <span class="ot">&lt;-</span> <span class="fu">Extract_Top_Markers</span>(<span class="at">marker_dataframe =</span> Visium.markers,</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">num_genes =</span> <span class="dv">5</span>, </span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">named_vector =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">make_unique =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Clustered_DotPlot</span>(<span class="at">seurat_object =</span> Visium.combined.sct, </span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">features =</span> top5_markers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="768"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-26-2.png" class="img-fluid" width="768"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-26-3.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Idents</span>(Visium.combined.sct) <span class="ot">&lt;-</span> Visium.combined.sct<span class="sc">$</span>MGC_Spot_Only</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="fu">DimPlot_scCustom</span>(Visium.combined.sct, </span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">reduction =</span> <span class="st">"umap"</span>, </span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">label =</span> F, </span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">figure_plot =</span> T,</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">pt.size =</span> <span class="fl">0.05</span>,</span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">colors_use =</span> <span class="fu">c</span>(<span class="st">'grey'</span>,<span class="st">'red'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">FeaturePlot_scCustom</span>(Visium.combined.sct,<span class="st">'CHIT1'</span>,<span class="at">order =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+NOTE: FeaturePlot_scCustom uses a specified `na_cutoff` when plotting to
+color cells with no expression as background color separate from color scale.
+Please ensure `na_cutoff` value is appropriate for feature being plotted.
+Default setting is appropriate for use when plotting from 'RNA' assay.
+When `na_cutoff` not appropriate (e.g., module scores) set to NULL to
+plot all cells in gradient color palette.
+
+-----This message will be shown once per session.-----</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">SpatialFeaturePlot</span>(Visium.combined.sct, </span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">features =</span> <span class="st">"CHIT1"</span>, </span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">pt.size.factor =</span> <span class="fl">1.2</span>, </span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">alpha =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="dv">1</span>),</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">combine =</span> T, </span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">ncol =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">SpatialDimPlot</span>(Visium.combined.sct,<span class="at">images =</span> <span class="st">'slice1'</span>,<span class="at">pt.size.factor =</span> <span class="fl">1.2</span>, <span class="at">cols =</span> colors) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dittoBarPlot</span>(Visium.combined.sct,<span class="at">var =</span> <span class="st">'PatientID'</span>,<span class="at">group.by =</span> <span class="st">'ident'</span>,<span class="at">scale =</span> <span class="st">'percent'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dittoBarPlot</span>(Visium.combined.sct,<span class="at">var =</span> <span class="st">'Clusters'</span>,<span class="at">group.by =</span> <span class="st">'MGC_Spot_Only'</span>,<span class="at">scale =</span> <span class="st">'percent'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="480"></p>
+</div>
+</div>
+</section>
+<section id="focus-on-one-slide---enhancement-with-bayesspace" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Focus on one slide - Enhancement with BayesSpace</h1>
+<p>BayesSpace clusters a low-dimensional representation of the gene expression matrix, incorporating a spatial prior to encourage neighboring spots to cluster together. The method can enhance the resolution of the low-dimensional representation into “sub-spots”, for which features such as gene expression or cell type composition can be imputed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>Slide_C1 <span class="ot">&lt;-</span> <span class="fu">readVisium</span>(<span class="st">"Slide_C1/"</span>)</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">102</span>)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>Slide_C1 <span class="ot">&lt;-</span> <span class="fu">spatialPreprocess</span>(Slide_C1, <span class="at">platform=</span><span class="st">"Visium"</span>, </span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">n.PCs=</span><span class="dv">10</span>, <span class="at">n.HVGs=</span><span class="dv">2000</span>, <span class="at">log.normalize=</span>T)</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>Slide_C1 <span class="ot">&lt;-</span> <span class="fu">qTune</span>(Slide_C1, <span class="at">qs=</span><span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">30</span>), <span class="at">platform=</span><span class="st">"Visium"</span>, <span class="at">d=</span><span class="dv">7</span>)</span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="fu">qPlot</span>(Slide_C1)</span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">149</span>)</span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a><span class="co">#q is set at the elbow of the previous plot</span></span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a>Slide_C1 <span class="ot">&lt;-</span> <span class="fu">spatialCluster</span>(Slide_C1, <span class="at">q=</span><span class="dv">9</span>, <span class="at">platform=</span><span class="st">"Visium"</span>, <span class="at">d=</span><span class="dv">7</span>,</span>
+<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a>                           <span class="at">init.method=</span><span class="st">"mclust"</span>, <span class="at">model=</span><span class="st">"t"</span>, <span class="at">gamma=</span><span class="dv">2</span>,</span>
+<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a>                           <span class="at">nrep=</span><span class="dv">1000</span>, <span class="at">burn.in=</span><span class="dv">100</span>,</span>
+<span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a>                           <span class="at">save.chain=</span><span class="cn">TRUE</span>)</span>
+<span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a>Slide_C1.enhanced <span class="ot">&lt;-</span> <span class="fu">spatialEnhance</span>(Slide_C1, <span class="at">q=</span><span class="dv">9</span>, <span class="at">platform=</span><span class="st">"Visium"</span>, <span class="at">d=</span><span class="dv">7</span>,</span>
+<span id="cb66-16"><a href="#cb66-16" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">model=</span><span class="st">"t"</span>, <span class="at">gamma=</span><span class="dv">2</span>,</span>
+<span id="cb66-17"><a href="#cb66-17" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">jitter_prior=</span><span class="fl">0.3</span>, <span class="at">jitter_scale=</span><span class="fl">3.5</span>,</span>
+<span id="cb66-18"><a href="#cb66-18" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">nrep=</span><span class="dv">500</span>, <span class="at">burn.in=</span><span class="dv">100</span>,</span>
+<span id="cb66-19"><a href="#cb66-19" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">save.chain=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(Slide_C1,<span class="st">'Slide_C1.rds'</span>)</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(Slide_C1.enhanced,<span class="st">'Slide_C1_Enhanced.rds'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>Slide_C1 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">'Slide_C1.rds'</span>)</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>Slide_C1.enhanced <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">'Slide_C1_Enhanced.rds'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clusterPlot</span>(Slide_C1.enhanced)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p>Multiple markers will be enhanced in resolution</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>markers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"CD68"</span>,<span class="st">"CHIT1"</span>,<span class="st">"KRT5"</span>,<span class="st">"TREM2"</span>)</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>Slide_C1.enhanced <span class="ot">&lt;-</span> <span class="fu">enhanceFeatures</span>(Slide_C1.enhanced, Slide_C1,</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">feature_names=</span>markers,</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">nrounds=</span><span class="dv">0</span>)</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map</span>(markers, <span class="cf">function</span>(x) <span class="fu">featurePlot</span>(Slide_C1.enhanced, x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid" width="768"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-37-2.png" class="img-fluid" width="768"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+[[3]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-37-3.png" class="img-fluid" width="768"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+[[4]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Visium_Analysis_files/figure-html/unnamed-chunk-37-4.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</section>
+<section id="session-info" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Session Info</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print session info</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>─ Session info ───────────────────────────────────────────────────────────────
+ setting  value
+ version  R version 4.2.1 (2022-06-23)
+ os       macOS Big Sur ... 10.16
+ system   x86_64, darwin17.0
+ ui       X11
+ language (EN)
+ collate  en_US.UTF-8
+ ctype    en_US.UTF-8
+ tz       Europe/Paris
+ date     2024-01-22
+ pandoc   3.1.1 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
+
+─ Packages ───────────────────────────────────────────────────────────────────
+ package              * version    date (UTC) lib source
+ abind                  1.4-5      2016-07-21 [1] CRAN (R 4.2.0)
+ AnnotationDbi        * 1.58.0     2022-04-26 [1] Bioconductor
+ ape                    5.7-1      2023-03-13 [1] CRAN (R 4.2.0)
+ aplot                  0.1.10     2023-03-08 [1] CRAN (R 4.2.0)
+ assertthat             0.2.1      2019-03-21 [1] CRAN (R 4.2.0)
+ backports              1.4.1      2021-12-13 [1] CRAN (R 4.2.0)
+ BayesSpace           * 1.6.0      2022-04-26 [1] Bioconductor
+ beachmat               2.14.0     2022-11-01 [1] Bioconductor
+ beeswarm               0.4.0      2021-06-01 [1] CRAN (R 4.2.0)
+ Biobase              * 2.58.0     2022-11-01 [1] Bioconductor
+ BiocFileCache          2.4.0      2022-04-26 [1] Bioconductor
+ BiocGenerics         * 0.44.0     2022-11-01 [1] Bioconductor
+ BiocNeighbors          1.16.0     2022-11-01 [1] Bioconductor
+ BiocParallel           1.32.5     2022-12-23 [1] Bioconductor
+ BiocSingular           1.14.0     2022-11-01 [1] Bioconductor
+ Biostrings             2.64.1     2022-08-18 [1] Bioconductor
+ bit                    4.0.5      2022-11-15 [1] CRAN (R 4.2.0)
+ bit64                  4.0.5      2020-08-30 [1] CRAN (R 4.2.0)
+ bitops                 1.0-7      2021-04-24 [1] CRAN (R 4.2.0)
+ blob                   1.2.4      2023-03-17 [1] CRAN (R 4.2.0)
+ bluster                1.6.0      2022-04-26 [1] Bioconductor
+ broom                  1.0.5      2023-06-09 [1] CRAN (R 4.2.0)
+ cachem                 1.0.8      2023-05-01 [1] CRAN (R 4.2.0)
+ car                    3.1-2      2023-03-30 [1] CRAN (R 4.2.0)
+ carData                3.0-5      2022-01-06 [1] CRAN (R 4.2.0)
+ circlize               0.4.15     2022-05-10 [1] CRAN (R 4.2.0)
+ cli                    3.6.1      2023-03-23 [1] CRAN (R 4.2.0)
+ clue                   0.3-64     2023-01-31 [1] CRAN (R 4.2.0)
+ cluster                2.1.4      2022-08-22 [1] CRAN (R 4.2.0)
+ clusterProfiler      * 4.4.4      2022-06-21 [1] Bioconductor
+ coda                   0.19-4     2020-09-30 [1] CRAN (R 4.2.0)
+ codetools              0.2-19     2023-02-01 [1] CRAN (R 4.2.0)
+ colorspace             2.1-0      2023-01-23 [1] CRAN (R 4.2.0)
+ ComplexHeatmap         2.14.0     2022-11-01 [1] Bioconductor
+ cowplot                1.1.1      2020-12-30 [1] CRAN (R 4.2.0)
+ crayon                 1.5.2      2022-09-29 [1] CRAN (R 4.2.0)
+ curl                   5.0.1      2023-06-07 [1] CRAN (R 4.2.0)
+ data.table             1.14.8     2023-02-17 [1] CRAN (R 4.2.0)
+ DBI                    1.1.3      2022-06-18 [1] CRAN (R 4.2.0)
+ dbplyr                 2.3.2      2023-03-21 [1] CRAN (R 4.2.0)
+ DelayedArray           0.24.0     2022-11-01 [1] Bioconductor
+ DelayedMatrixStats     1.20.0     2022-11-01 [1] Bioconductor
+ deldir                 1.0-9      2023-05-17 [1] CRAN (R 4.2.0)
+ digest                 0.6.32     2023-06-26 [1] CRAN (R 4.2.0)
+ DirichletReg           0.7-1      2021-05-18 [1] CRAN (R 4.2.0)
+ dittoSeq             * 1.8.1      2022-06-02 [1] Bioconductor
+ DO.db                  2.9        2022-10-07 [1] Bioconductor
+ doParallel             1.0.17     2022-02-07 [1] CRAN (R 4.2.0)
+ DOSE                 * 3.22.1     2022-08-30 [1] Bioconductor
+ downloader             0.4        2015-07-09 [1] CRAN (R 4.2.0)
+ dplyr                * 1.1.2      2023-04-20 [1] CRAN (R 4.2.0)
+ dqrng                  0.3.0      2021-05-01 [1] CRAN (R 4.2.0)
+ edgeR                  3.40.2     2023-01-19 [1] Bioconductor
+ ellipsis               0.3.2      2021-04-29 [1] CRAN (R 4.2.0)
+ EnhancedVolcano        1.14.0     2022-04-26 [1] Bioconductor
+ enrichplot           * 1.16.2     2022-08-30 [1] Bioconductor
+ evaluate               0.21       2023-05-05 [1] CRAN (R 4.2.0)
+ fansi                  1.0.4      2023-01-22 [1] CRAN (R 4.2.1)
+ farver                 2.1.1      2022-07-06 [1] CRAN (R 4.2.0)
+ fastmap                1.1.1      2023-02-24 [1] CRAN (R 4.2.0)
+ fastmatch              1.1-3      2021-07-23 [1] CRAN (R 4.2.0)
+ fgsea                  1.22.0     2022-04-26 [1] Bioconductor
+ filelock               1.0.2      2018-10-05 [1] CRAN (R 4.2.0)
+ fitdistrplus           1.1-11     2023-04-25 [1] CRAN (R 4.2.0)
+ forcats                1.0.0      2023-01-29 [1] CRAN (R 4.2.0)
+ foreach                1.5.2      2022-02-02 [1] CRAN (R 4.2.0)
+ Formula                1.2-5      2023-02-24 [1] CRAN (R 4.2.1)
+ future                 1.33.0     2023-07-01 [1] CRAN (R 4.2.0)
+ future.apply           1.11.0     2023-05-21 [1] CRAN (R 4.2.0)
+ generics               0.1.3      2022-07-05 [1] CRAN (R 4.2.0)
+ GenomeInfoDb         * 1.34.9     2023-02-02 [1] Bioconductor
+ GenomeInfoDbData       1.2.9      2023-02-27 [1] Bioconductor
+ GenomicRanges        * 1.50.2     2022-12-16 [1] Bioconductor
+ GetoptLong             1.0.5      2020-12-15 [1] CRAN (R 4.2.0)
+ ggbeeswarm             0.7.2      2023-04-29 [1] CRAN (R 4.2.0)
+ ggforce                0.4.1      2022-10-04 [1] CRAN (R 4.2.0)
+ ggfun                  0.1.1      2023-06-24 [1] CRAN (R 4.2.0)
+ ggnewscale             0.4.9      2023-05-25 [1] CRAN (R 4.2.0)
+ ggplot2              * 3.4.3      2023-08-14 [1] CRAN (R 4.2.1)
+ ggplotify              0.1.1      2023-06-27 [1] CRAN (R 4.2.0)
+ ggprism                1.0.4      2022-11-04 [1] CRAN (R 4.2.1)
+ ggpubr               * 0.6.0      2023-02-10 [1] CRAN (R 4.2.0)
+ ggraph                 2.1.0      2022-10-09 [1] CRAN (R 4.2.1)
+ ggrastr                1.0.2      2023-06-01 [1] CRAN (R 4.2.0)
+ ggrepel                0.9.3      2023-02-03 [1] CRAN (R 4.2.0)
+ ggridges               0.5.4      2022-09-26 [1] CRAN (R 4.2.0)
+ ggsignif               0.6.4      2022-10-13 [1] CRAN (R 4.2.1)
+ ggtree                 3.4.4      2022-09-27 [1] Bioconductor
+ GlobalOptions          0.1.2      2020-06-10 [1] CRAN (R 4.2.0)
+ globals                0.16.2     2022-11-21 [1] CRAN (R 4.2.0)
+ glue                   1.6.2      2022-02-24 [1] CRAN (R 4.2.0)
+ GO.db                  3.15.0     2022-10-07 [1] Bioconductor
+ goftest                1.2-3      2021-10-07 [1] CRAN (R 4.2.0)
+ GOSemSim               2.22.0     2022-04-26 [1] Bioconductor
+ graph                  1.76.0     2022-11-01 [1] Bioconductor
+ graphite               1.42.0     2022-04-26 [1] Bioconductor
+ graphlayouts           1.0.0      2023-05-01 [1] CRAN (R 4.2.0)
+ gridExtra              2.3        2017-09-09 [1] CRAN (R 4.2.0)
+ gridGraphics           0.5-1      2020-12-13 [1] CRAN (R 4.2.0)
+ gtable                 0.3.4      2023-08-21 [1] CRAN (R 4.2.1)
+ hdf5r                  1.3.8      2023-01-21 [1] CRAN (R 4.2.0)
+ htmltools              0.5.5      2023-03-23 [1] CRAN (R 4.2.0)
+ htmlwidgets            1.6.2      2023-03-17 [1] CRAN (R 4.2.0)
+ httpuv                 1.6.11     2023-05-11 [1] CRAN (R 4.2.0)
+ httr                   1.4.6      2023-05-08 [1] CRAN (R 4.2.0)
+ ica                    1.0-3      2022-07-08 [1] CRAN (R 4.2.0)
+ igraph                 1.5.0      2023-06-16 [1] CRAN (R 4.2.0)
+ IRanges              * 2.32.0     2022-11-01 [1] Bioconductor
+ irlba                  2.3.5.1    2022-10-03 [1] CRAN (R 4.2.0)
+ iterators              1.0.14     2022-02-05 [1] CRAN (R 4.2.0)
+ janitor                2.2.0      2023-02-02 [1] CRAN (R 4.2.0)
+ jsonlite               1.8.7      2023-06-29 [1] CRAN (R 4.2.0)
+ KEGGREST               1.36.3     2022-07-14 [1] Bioconductor
+ KernSmooth             2.23-21    2023-05-03 [1] CRAN (R 4.2.0)
+ knitr                  1.43       2023-05-25 [1] CRAN (R 4.2.0)
+ labeling               0.4.3      2023-08-29 [1] CRAN (R 4.2.1)
+ later                  1.3.1      2023-05-02 [1] CRAN (R 4.2.0)
+ lattice                0.21-8     2023-04-05 [1] CRAN (R 4.2.0)
+ lazyeval               0.2.2      2019-03-15 [1] CRAN (R 4.2.0)
+ leiden                 0.4.3      2022-09-10 [1] CRAN (R 4.2.0)
+ lifecycle              1.0.3      2022-10-07 [1] CRAN (R 4.2.1)
+ limma                  3.54.2     2023-02-28 [1] Bioconductor
+ listenv                0.9.0      2022-12-16 [1] CRAN (R 4.2.0)
+ lmtest                 0.9-40     2022-03-21 [1] CRAN (R 4.2.0)
+ locfit                 1.5-9.8    2023-06-11 [1] CRAN (R 4.2.0)
+ lubridate              1.9.2      2023-02-10 [1] CRAN (R 4.2.0)
+ magick                 2.7.4      2023-03-09 [1] CRAN (R 4.2.0)
+ magrittr               2.0.3      2022-03-30 [1] CRAN (R 4.2.0)
+ MASS                   7.3-60     2023-05-04 [1] CRAN (R 4.2.0)
+ Matrix               * 1.5-4.1    2023-05-18 [1] CRAN (R 4.2.0)
+ MatrixGenerics       * 1.10.0     2022-11-01 [1] Bioconductor
+ matrixStats          * 1.0.0      2023-06-02 [1] CRAN (R 4.2.0)
+ maxLik                 1.5-2      2021-07-26 [1] CRAN (R 4.2.0)
+ mclust                 6.0.0      2022-10-31 [1] CRAN (R 4.2.0)
+ memoise                2.0.1      2021-11-26 [1] CRAN (R 4.2.0)
+ metapod                1.4.0      2022-04-26 [1] Bioconductor
+ mime                   0.12       2021-09-28 [1] CRAN (R 4.2.0)
+ miniUI                 0.1.1.1    2018-05-18 [1] CRAN (R 4.2.0)
+ miscTools              0.6-28     2023-05-03 [1] CRAN (R 4.2.0)
+ munsell                0.5.0      2018-06-12 [1] CRAN (R 4.2.0)
+ nlme                   3.1-162    2023-01-31 [1] CRAN (R 4.2.0)
+ org.Hs.eg.db         * 3.15.0     2022-10-07 [1] Bioconductor
+ org.Mm.eg.db           3.15.0     2022-10-07 [1] Bioconductor
+ paletteer              1.5.0      2022-10-19 [1] CRAN (R 4.2.0)
+ parallelly             1.36.0     2023-05-26 [1] CRAN (R 4.2.0)
+ patchwork            * 1.1.2      2022-08-19 [1] CRAN (R 4.2.0)
+ pbapply                1.7-2      2023-06-27 [1] CRAN (R 4.2.0)
+ pheatmap               1.0.12     2019-01-04 [1] CRAN (R 4.2.0)
+ pillar                 1.9.0      2023-03-22 [1] CRAN (R 4.2.0)
+ pkgconfig              2.0.3      2019-09-22 [1] CRAN (R 4.2.0)
+ plotly                 4.10.2     2023-06-03 [1] CRAN (R 4.2.0)
+ plyr                   1.8.8      2022-11-11 [1] CRAN (R 4.2.0)
+ png                    0.1-8      2022-11-29 [1] CRAN (R 4.2.0)
+ polyclip               1.10-4     2022-10-20 [1] CRAN (R 4.2.0)
+ prismatic              1.1.1      2022-08-15 [1] CRAN (R 4.2.0)
+ progressr              0.13.0     2023-01-10 [1] CRAN (R 4.2.1)
+ promises               1.2.0.1    2021-02-11 [1] CRAN (R 4.2.0)
+ purrr                  1.0.1      2023-01-10 [1] CRAN (R 4.2.0)
+ qvalue                 2.30.0     2022-11-01 [1] Bioconductor
+ R6                     2.5.1      2021-08-19 [1] CRAN (R 4.2.0)
+ RANN                   2.6.1      2019-01-08 [1] CRAN (R 4.2.0)
+ rappdirs               0.3.3      2021-01-31 [1] CRAN (R 4.2.0)
+ RColorBrewer           1.1-3      2022-04-03 [1] CRAN (R 4.2.0)
+ Rcpp                   1.0.11     2023-07-06 [1] CRAN (R 4.2.1)
+ RcppAnnoy              0.0.21     2023-07-02 [1] CRAN (R 4.2.0)
+ RCurl                  1.98-1.12  2023-03-27 [1] CRAN (R 4.2.0)
+ reactome.db            1.81.0     2022-10-14 [1] Bioconductor
+ ReactomePA           * 1.40.0     2022-04-26 [1] Bioconductor
+ rematch2               2.1.2      2020-05-01 [1] CRAN (R 4.2.0)
+ reshape2               1.4.4      2020-04-09 [1] CRAN (R 4.2.0)
+ reticulate             1.32.0     2023-09-11 [1] CRAN (R 4.2.1)
+ rhdf5                  2.40.0     2022-04-26 [1] Bioconductor
+ rhdf5filters           1.8.0      2022-04-26 [1] Bioconductor
+ Rhdf5lib               1.20.0     2022-11-01 [1] Bioconductor
+ rjson                  0.2.21     2022-01-09 [1] CRAN (R 4.2.0)
+ rlang                  1.1.1      2023-04-28 [1] CRAN (R 4.2.0)
+ rmarkdown              2.23       2023-07-01 [1] CRAN (R 4.2.0)
+ ROCR                   1.0-11     2020-05-02 [1] CRAN (R 4.2.0)
+ RSQLite                2.3.1      2023-04-03 [1] CRAN (R 4.2.0)
+ rstatix                0.7.2      2023-02-01 [1] CRAN (R 4.2.0)
+ rstudioapi             0.14       2022-08-22 [1] CRAN (R 4.2.0)
+ rsvd                   1.0.5      2021-04-16 [1] CRAN (R 4.2.0)
+ Rtsne                  0.16       2022-04-17 [1] CRAN (R 4.2.0)
+ S4Vectors            * 0.36.2     2023-02-26 [1] Bioconductor
+ sandwich               3.0-2      2022-06-15 [1] CRAN (R 4.2.0)
+ ScaledMatrix           1.6.0      2022-11-01 [1] Bioconductor
+ scales                 1.2.1      2022-08-20 [1] CRAN (R 4.2.0)
+ scater                 1.26.1     2022-11-13 [1] Bioconductor
+ scattermore            1.2        2023-06-12 [1] CRAN (R 4.2.0)
+ scatterpie             0.2.1      2023-06-07 [1] CRAN (R 4.2.0)
+ scCustomize          * 1.1.1      2023-01-13 [1] CRAN (R 4.2.0)
+ scran                  1.24.1     2022-09-11 [1] Bioconductor
+ sctransform            0.3.5      2022-09-21 [1] CRAN (R 4.2.0)
+ scuttle                1.8.4      2023-01-19 [1] Bioconductor
+ sessioninfo            1.2.2      2021-12-06 [1] CRAN (R 4.2.0)
+ Seurat               * 4.3.0.9001 2023-02-22 [1] Github (satijalab/seurat@54e2fe5)
+ SeuratObject         * 4.1.3      2022-11-07 [1] CRAN (R 4.2.0)
+ shadowtext             0.1.2      2022-04-22 [1] CRAN (R 4.2.0)
+ shape                  1.4.6      2021-05-19 [1] CRAN (R 4.2.0)
+ shiny                  1.7.4      2022-12-15 [1] CRAN (R 4.2.0)
+ SingleCellExperiment * 1.20.0     2022-11-01 [1] Bioconductor
+ snakecase              0.11.0     2019-05-25 [1] CRAN (R 4.2.0)
+ sp                     2.0-0      2023-06-22 [1] CRAN (R 4.2.0)
+ sparseMatrixStats      1.10.0     2022-11-01 [1] Bioconductor
+ spatstat.data          3.0-1      2023-03-12 [1] CRAN (R 4.2.0)
+ spatstat.explore       3.2-1      2023-05-13 [1] CRAN (R 4.2.0)
+ spatstat.geom          3.2-1      2023-05-09 [1] CRAN (R 4.2.0)
+ spatstat.random        3.1-5      2023-05-11 [1] CRAN (R 4.2.0)
+ spatstat.sparse        3.0-2      2023-06-25 [1] CRAN (R 4.2.0)
+ spatstat.utils         3.0-3      2023-05-09 [1] CRAN (R 4.2.0)
+ speckle              * 0.0.3      2022-10-07 [1] Github (Oshlack/speckle@83df3e9)
+ statmod                1.5.0      2023-01-06 [1] CRAN (R 4.2.0)
+ stringi                1.7.12     2023-01-11 [1] CRAN (R 4.2.0)
+ stringr                1.5.0      2022-12-02 [1] CRAN (R 4.2.0)
+ SummarizedExperiment * 1.28.0     2022-11-01 [1] Bioconductor
+ survival               3.5-5      2023-03-12 [1] CRAN (R 4.2.0)
+ tensor                 1.5        2012-05-05 [1] CRAN (R 4.2.0)
+ tibble                 3.2.1      2023-03-20 [1] CRAN (R 4.2.0)
+ tidygraph              1.2.3      2023-02-01 [1] CRAN (R 4.2.0)
+ tidyr                  1.3.0      2023-01-24 [1] CRAN (R 4.2.0)
+ tidyselect             1.2.0      2022-10-10 [1] CRAN (R 4.2.1)
+ tidytree               0.4.2      2022-12-18 [1] CRAN (R 4.2.0)
+ timechange             0.2.0      2023-01-11 [1] CRAN (R 4.2.0)
+ treeio                 1.20.2     2022-08-14 [1] Bioconductor
+ tweenr                 2.0.2      2022-09-06 [1] CRAN (R 4.2.0)
+ utf8                   1.2.3      2023-01-31 [1] CRAN (R 4.2.0)
+ uwot                   0.1.16     2023-06-29 [1] CRAN (R 4.2.0)
+ vctrs                  0.6.3      2023-06-14 [1] CRAN (R 4.2.0)
+ vipor                  0.4.5      2017-03-22 [1] CRAN (R 4.2.0)
+ viridis                0.6.3      2023-05-03 [1] CRAN (R 4.2.0)
+ viridisLite            0.4.2      2023-05-02 [1] CRAN (R 4.2.0)
+ withr                  2.5.1      2023-09-26 [1] CRAN (R 4.2.1)
+ xfun                   0.39       2023-04-20 [1] CRAN (R 4.2.0)
+ xgboost                1.7.5.1    2023-03-30 [1] CRAN (R 4.2.0)
+ xtable                 1.8-4      2019-04-21 [1] CRAN (R 4.2.0)
+ XVector                0.38.0     2022-11-01 [1] Bioconductor
+ yaml                   2.3.7      2023-01-23 [1] CRAN (R 4.2.0)
+ yulab.utils            0.0.6      2022-12-20 [1] CRAN (R 4.2.0)
+ zlibbioc               1.44.0     2022-11-01 [1] Bioconductor
+ zoo                    1.8-12     2023-04-13 [1] CRAN (R 4.2.0)
+
+ [1] /Library/Frameworks/R.framework/Versions/4.2/Resources/library
+
+──────────────────────────────────────────────────────────────────────────────</code></pre>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
