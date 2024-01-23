@@ -13,7 +13,7 @@ To reproduce the bulk RNAseq data analysis described in the paper titled "Trem2 
    - Survival plots were constructed using the survival and survminer R packages.
 
 3. **Data Preprocessing:**
-   - Bulk RNAseq and miRNAseq data were normalized using the EDASeq package based on gene length.
+   - Bulk RNAseq data were normalized using the EDASeq package based on gene length.
    - Genes with zero expression in more than 25% of the samples were removed.
 
 4. **Differential Expression Analysis:**
