@@ -87,16 +87,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
-<script src="TCGA_Analysis_files/libs/clipboard/clipboard.min.js"></script>
-<script src="TCGA_Analysis_files/libs/quarto-html/quarto.js"></script>
-<script src="TCGA_Analysis_files/libs/quarto-html/popper.min.js"></script>
-<script src="TCGA_Analysis_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="TCGA_Analysis_files/libs/quarto-html/anchor.min.js"></script>
-<link href="TCGA_Analysis_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="TCGA_Analysis_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="TCGA_Analysis_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="TCGA_Analysis_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="TCGA_Analysis_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="TCGA_Analysis_for_Paper_files/libs/clipboard/clipboard.min.js"></script>
+<script src="TCGA_Analysis_for_Paper_files/libs/quarto-html/quarto.js"></script>
+<script src="TCGA_Analysis_for_Paper_files/libs/quarto-html/popper.min.js"></script>
+<script src="TCGA_Analysis_for_Paper_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="TCGA_Analysis_for_Paper_files/libs/quarto-html/anchor.min.js"></script>
+<link href="TCGA_Analysis_for_Paper_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="TCGA_Analysis_for_Paper_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="TCGA_Analysis_for_Paper_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="TCGA_Analysis_for_Paper_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="TCGA_Analysis_for_Paper_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -113,16 +113,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#importing-rnaseq-data" id="toc-importing-rnaseq-data" class="nav-link" data-scroll-target="#importing-rnaseq-data"><span class="toc-section-number">1.1</span>  Importing RNAseq data</a></li>
   <li><a href="#transform-into-ensembl-gene-ids-using-biomart" id="toc-transform-into-ensembl-gene-ids-using-biomart" class="nav-link" data-scroll-target="#transform-into-ensembl-gene-ids-using-biomart"><span class="toc-section-number">1.2</span>  Transform into ENSEMBL gene IDs using biomaRt</a></li>
-  <li><a href="#importing-wes-data" id="toc-importing-wes-data" class="nav-link" data-scroll-target="#importing-wes-data"><span class="toc-section-number">1.3</span>  Importing WES data</a></li>
-  <li><a href="#importing-mirnaseq-data" id="toc-importing-mirnaseq-data" class="nav-link" data-scroll-target="#importing-mirnaseq-data"><span class="toc-section-number">1.4</span>  Importing miRNAseq data</a></li>
-  <li><a href="#importing-methylome-data" id="toc-importing-methylome-data" class="nav-link" data-scroll-target="#importing-methylome-data"><span class="toc-section-number">1.5</span>  Importing methylome data</a></li>
   </ul></li>
-  <li><a href="#survival-analysis-according-to-mgcs" id="toc-survival-analysis-according-to-mgcs" class="nav-link" data-scroll-target="#survival-analysis-according-to-mgcs"><span class="toc-section-number">2</span>  Survival Analysis according to MGCs</a>
-  <ul class="collapse">
-  <li><a href="#correlation-between-mgc-content-and-keratin" id="toc-correlation-between-mgc-content-and-keratin" class="nav-link" data-scroll-target="#correlation-between-mgc-content-and-keratin"><span class="toc-section-number">2.1</span>  Correlation between MGC content and Keratin</a></li>
-  <li><a href="#mgc-content-survival" id="toc-mgc-content-survival" class="nav-link" data-scroll-target="#mgc-content-survival"><span class="toc-section-number">2.2</span>  MGC Content survival</a></li>
-  <li><a href="#keratin-content-survival" id="toc-keratin-content-survival" class="nav-link" data-scroll-target="#keratin-content-survival"><span class="toc-section-number">2.3</span>  Keratin Content survival</a></li>
-  </ul></li>
+  <li><a href="#retrieving-clinical-data" id="toc-retrieving-clinical-data" class="nav-link" data-scroll-target="#retrieving-clinical-data"><span class="toc-section-number">2</span>  Retrieving Clinical Data</a></li>
   <li><a href="#deg-analysis-using-deseq2" id="toc-deg-analysis-using-deseq2" class="nav-link" data-scroll-target="#deg-analysis-using-deseq2"><span class="toc-section-number">3</span>  DEG analysis using DESEq2</a>
   <ul class="collapse">
   <li><a href="#running-deseq2-model" id="toc-running-deseq2-model" class="nav-link" data-scroll-target="#running-deseq2-model"><span class="toc-section-number">3.1</span>  Running DESEq2 model</a></li>
@@ -132,14 +124,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#common-gene-signature-with-visium-spots" id="toc-common-gene-signature-with-visium-spots" class="nav-link" data-scroll-target="#common-gene-signature-with-visium-spots"><span class="toc-section-number">3.5</span>  Common gene signature with Visium Spots</a></li>
   <li><a href="#gene-ontology-based-on-degs" id="toc-gene-ontology-based-on-degs" class="nav-link" data-scroll-target="#gene-ontology-based-on-degs"><span class="toc-section-number">3.6</span>  Gene Ontology based on DEGs</a></li>
   </ul></li>
-  <li><a href="#survival-analysis-based-on-gene-signatures" id="toc-survival-analysis-based-on-gene-signatures" class="nav-link" data-scroll-target="#survival-analysis-based-on-gene-signatures"><span class="toc-section-number">4</span>  Survival Analysis based on gene signatures</a>
-  <ul class="collapse">
-  <li><a href="#automatic-cutoffs-for-os" id="toc-automatic-cutoffs-for-os" class="nav-link" data-scroll-target="#automatic-cutoffs-for-os"><span class="toc-section-number">4.1</span>  Automatic cutoffs for OS</a></li>
-  <li><a href="#automatic-cutoffs-for-pfi" id="toc-automatic-cutoffs-for-pfi" class="nav-link" data-scroll-target="#automatic-cutoffs-for-pfi"><span class="toc-section-number">4.2</span>  Automatic cutoffs for PFI</a></li>
-  </ul></li>
-  <li><a href="#analyzing-wes-snp-data" id="toc-analyzing-wes-snp-data" class="nav-link" data-scroll-target="#analyzing-wes-snp-data"><span class="toc-section-number">5</span>  Analyzing WES SNP data</a></li>
-  <li><a href="#analyzing-mirnaseq-data-deseq2" id="toc-analyzing-mirnaseq-data-deseq2" class="nav-link" data-scroll-target="#analyzing-mirnaseq-data-deseq2"><span class="toc-section-number">6</span>  Analyzing miRNAseq data (DESEq2)</a></li>
-  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info"><span class="toc-section-number">7</span>  Session Info</a></li>
+  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info"><span class="toc-section-number">4</span>  Session Info</a></li>
   </ul>
 </nav>
 </div>
@@ -252,394 +237,156 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(rna, <span class="st">'RNAseq/Tumor_HNSC_bulk_PreProcessed.csv'</span>,<span class="at">row.names =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="importing-wes-data" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="importing-wes-data"><span class="header-section-number">1.3</span> Importing WES data</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>query <span class="ot">&lt;-</span> TCGAbiolinks<span class="sc">::</span><span class="fu">GDCquery</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">project =</span> <span class="st">"TCGA-HNSC"</span>, </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data.category =</span> <span class="st">"Simple Nucleotide Variation"</span>, </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">access =</span> <span class="st">"open"</span>, </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">legacy =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data.type =</span> <span class="st">"Masked Somatic Mutation"</span>, </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">workflow.type =</span> <span class="st">"Aliquot Ensemble Somatic Variant Merging and Masking"</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>TCGAbiolinks<span class="sc">::</span><span class="fu">GDCdownload</span>(query)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>maf <span class="ot">&lt;-</span> TCGAbiolinks<span class="sc">::</span><span class="fu">GDCprepare</span>(query)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Add the patient barcode ids</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>maf<span class="sc">$</span>bcr_patient_barcode <span class="ot">&lt;-</span> <span class="fu">substr</span>(maf<span class="sc">$</span>Tumor_Sample_Barcode,<span class="dv">1</span>,<span class="dv">12</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(maf, <span class="st">'WES/Mutation_Data_HNSC.csv'</span>, <span class="at">row.names =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
-<section id="importing-mirnaseq-data" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="importing-mirnaseq-data"><span class="header-section-number">1.4</span> Importing miRNAseq data</h2>
+<section id="retrieving-clinical-data" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Retrieving Clinical Data</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>query.miRNA <span class="ot">&lt;-</span> TCGAbiolinks<span class="sc">::</span><span class="fu">GDCquery</span>(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">project =</span> <span class="st">"TCGA-HNSC"</span>, </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">experimental.strategy =</span> <span class="st">"miRNA-Seq"</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data.category =</span> <span class="st">"Transcriptome Profiling"</span>, </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data.type =</span> <span class="st">"miRNA Expression Quantification"</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample.type =</span> <span class="st">'Primary Tumor'</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>TCGAbiolinks<span class="sc">::</span><span class="fu">GDCdownload</span>(<span class="at">query =</span> query.miRNA)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>dataAssy.miR <span class="ot">&lt;-</span> TCGAbiolinks<span class="sc">::</span><span class="fu">GDCprepare</span>(</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">query =</span> query.miRNA</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(dataAssy.miR) <span class="ot">&lt;-</span> dataAssy.miR<span class="sc">$</span>miRNA_ID</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># using read_count's data </span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>read_countData <span class="ot">&lt;-</span>  <span class="fu">colnames</span>(dataAssy.miR)[<span class="fu">grep</span>(<span class="st">"count"</span>, <span class="fu">colnames</span>(dataAssy.miR))]</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>dataAssy.miR <span class="ot">&lt;-</span> dataAssy.miR[,read_countData]</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(dataAssy.miR) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"read_count_"</span>,<span class="st">""</span>, <span class="fu">colnames</span>(dataAssy.miR))</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>dataFilt <span class="ot">&lt;-</span> TCGAbiolinks<span class="sc">::</span><span class="fu">TCGAanalyze_Filtering</span>(</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">tabDF =</span> dataAssy.miR,</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"quantile"</span>, </span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">qnt.cut =</span>  <span class="fl">0.25</span></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>)   </span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(dataFilt) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">.'</span>,<span class="st">'-'</span>,<span class="fu">substr</span>(<span class="fu">colnames</span>(dataFilt),<span class="dv">1</span>,<span class="dv">12</span>))</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(dataFilt, <span class="st">'miRNAseq/HNSC_miRNA_Data.csv'</span>, <span class="at">row.names =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reading clinical data</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>clinical <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'Clinical/TCGA_HNSC_Surival.csv'</span>, <span class="at">row.names =</span> <span class="dv">1</span>, <span class="at">sep =</span> <span class="st">';'</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Adding clinical data descriptions</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Keratin state</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>clinical <span class="ot">&lt;-</span> clinical <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">K_state =</span> <span class="fu">case_when</span>(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(clinical<span class="sc">$</span>K)) <span class="sc">&gt;=</span> <span class="dv">10</span> <span class="sc">~</span> <span class="st">"Keratin High"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(clinical<span class="sc">$</span>K)) <span class="sc">&lt;</span> <span class="dv">10</span> <span class="sc">~</span> <span class="st">"Keratin Low"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#MGC Content</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>clinical <span class="ot">&lt;-</span> clinical <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">MGC_Three =</span> <span class="fu">case_when</span>(</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(clinical<span class="sc">$</span>MCG_total_mm2)) <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"MGC High"</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(clinical<span class="sc">$</span>MCG_total_mm2)) <span class="sc">&lt;</span> <span class="fl">0.2</span> <span class="sc">~</span> <span class="st">"MGC Low"</span>,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(clinical<span class="sc">$</span>MCG_total_mm2)) <span class="sc">&lt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(clinical<span class="sc">$</span>MCG_total_mm2)) <span class="sc">&gt;=</span> <span class="fl">0.2</span> <span class="sc">~</span> <span class="st">"MGC Medium"</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="importing-methylome-data" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="importing-methylome-data"><span class="header-section-number">1.5</span> Importing methylome data</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>query.met <span class="ot">&lt;-</span> TCGAbiolinks<span class="sc">::</span><span class="fu">GDCquery</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">project =</span> <span class="st">"TCGA-HNSC"</span>, </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data.category =</span> <span class="st">"DNA Methylation"</span>, </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data.type =</span> <span class="st">"Methylation Beta Value"</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">platform =</span> <span class="st">"Illumina Human Methylation 450"</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample.type =</span> <span class="st">'Primary Tumor'</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>TCGAbiolinks<span class="sc">::</span><span class="fu">GDCdownload</span>(query.met,<span class="at">files.per.chunk =</span> <span class="dv">10</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>acc.met <span class="ot">&lt;-</span> TCGAbiolinks<span class="sc">::</span><span class="fu">GDCprepare</span>(</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">query =</span> query.met,</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">save =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">save.filename =</span> <span class="st">"HNSCDNAmet450k.rda"</span>,</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">summarizedExperiment =</span> <span class="cn">TRUE</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-<section id="survival-analysis-according-to-mgcs" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Survival Analysis according to MGCs</h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reading clinical data</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>clinical <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'Clinical/TCGA_HNSC_Surival.csv'</span>, <span class="at">row.names =</span> <span class="dv">1</span>, <span class="at">sep =</span> <span class="st">';'</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Adding clinical data descriptions</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Keratin state</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>clinical <span class="ot">&lt;-</span> clinical <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">K_state =</span> <span class="fu">case_when</span>(</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(clinical<span class="sc">$</span>K)) <span class="sc">&gt;=</span> <span class="dv">10</span> <span class="sc">~</span> <span class="st">"Keratin High"</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(clinical<span class="sc">$</span>K)) <span class="sc">&lt;</span> <span class="dv">10</span> <span class="sc">~</span> <span class="st">"Keratin Low"</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#MGC Content</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>clinical <span class="ot">&lt;-</span> clinical <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">MGC_Three =</span> <span class="fu">case_when</span>(</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(clinical<span class="sc">$</span>MCG_total_mm2)) <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"MGC High"</span>,</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(clinical<span class="sc">$</span>MCG_total_mm2)) <span class="sc">&lt;</span> <span class="fl">0.2</span> <span class="sc">~</span> <span class="st">"MGC Low"</span>,</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(clinical<span class="sc">$</span>MCG_total_mm2)) <span class="sc">&lt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(clinical<span class="sc">$</span>MCG_total_mm2)) <span class="sc">&gt;=</span> <span class="fl">0.2</span> <span class="sc">~</span> <span class="st">"MGC Medium"</span>)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="correlation-between-mgc-content-and-keratin" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="correlation-between-mgc-content-and-keratin"><span class="header-section-number">2.1</span> Correlation between MGC content and Keratin</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggscatter</span>(clinical, <span class="at">x =</span> <span class="st">"K"</span>, <span class="at">y =</span> <span class="st">"MCG_total_mm2"</span>,</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">add =</span> <span class="st">"reg.line"</span>,  <span class="co"># Add regressin line</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">add.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">fill =</span> <span class="st">"lightgray"</span>), <span class="co"># Customize reg. line</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  ggpubr<span class="sc">::</span><span class="fu">stat_cor</span>(<span class="at">method =</span> <span class="st">"pearson"</span>) <span class="sc">+</span> </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Keratin (%)"</span>, <span class="at">y =</span> <span class="st">"Number of MGC per mm²"</span>) <span class="sc">+</span> </span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  ggprism<span class="sc">::</span><span class="fu">theme_prism</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="TCGA_Analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="768"></p>
-</div>
-</div>
-</section>
-<section id="mgc-content-survival" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="mgc-content-survival"><span class="header-section-number">2.2</span> MGC Content survival</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sfit <span class="ot">&lt;-</span> survival<span class="sc">::</span><span class="fu">survfit</span>(survival<span class="sc">::</span><span class="fu">Surv</span>(OS.time, OS) <span class="sc">~</span> MGC_Three, <span class="at">data=</span>clinical)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sfit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Call: survfit(formula = survival::Surv(OS.time, OS) ~ MGC_Three, data = clinical)
-
-                MGC_Three=MGC High 
- time n.risk n.event survival std.err lower 95% CI upper 95% CI
-  342     10       1    0.900  0.0949       0.7320            1
- 2002      4       1    0.675  0.2074       0.3696            1
- 2741      2       1    0.338  0.2602       0.0745            1
-
-                MGC_Three=MGC Low 
- time n.risk n.event survival std.err lower 95% CI upper 95% CI
-   64     80       1    0.988  0.0124        0.963        1.000
-   65     79       1    0.975  0.0175        0.941        1.000
-   69     78       1    0.963  0.0212        0.922        1.000
-   76     77       1    0.950  0.0244        0.903        0.999
-   82     76       1    0.938  0.0271        0.886        0.992
-  108     74       1    0.925  0.0295        0.869        0.985
-  144     70       1    0.912  0.0319        0.851        0.976
-  161     69       1    0.898  0.0341        0.834        0.968
-  185     68       1    0.885  0.0360        0.817        0.959
-  191     67       1    0.872  0.0379        0.801        0.949
-  194     66       1    0.859  0.0395        0.785        0.940
-  197     65       1    0.846  0.0411        0.769        0.930
-  256     63       1    0.832  0.0425        0.753        0.920
-  268     62       1    0.819  0.0439        0.737        0.909
-  283     61       1    0.805  0.0452        0.721        0.899
-  292     60       1    0.792  0.0464        0.706        0.888
-  327     59       1    0.778  0.0475        0.691        0.877
-  337     58       1    0.765  0.0486        0.676        0.866
-  341     57       1    0.752  0.0495        0.661        0.855
-  352     56       1    0.738  0.0504        0.646        0.844
-  379     55       1    0.725  0.0513        0.631        0.833
-  385     54       1    0.711  0.0520        0.616        0.821
-  395     53       1    0.698  0.0528        0.602        0.809
-  397     52       1    0.685  0.0534        0.587        0.798
-  403     51       1    0.671  0.0540        0.573        0.786
-  446     48       1    0.657  0.0547        0.558        0.774
-  459     47       1    0.643  0.0553        0.543        0.761
-  462     46       1    0.629  0.0558        0.529        0.749
-  484     44       1    0.615  0.0564        0.514        0.736
-  530     43       1    0.601  0.0568        0.499        0.723
-  602     39       1    0.585  0.0574        0.483        0.709
-  654     35       1    0.568  0.0582        0.465        0.695
-  666     34       1    0.552  0.0588        0.448        0.680
-  680     32       1    0.534  0.0594        0.430        0.665
-  853     26       1    0.514  0.0606        0.408        0.648
-  915     24       1    0.492  0.0617        0.385        0.630
- 1134     21       1    0.469  0.0631        0.360        0.611
- 1591     11       1    0.426  0.0703        0.309        0.589
- 1748      8       1    0.373  0.0792        0.246        0.566
-
-                MGC_Three=MGC Medium 
- time n.risk n.event survival std.err lower 95% CI upper 95% CI
-  215     18       1    0.944  0.0540        0.844        1.000
-  327     17       1    0.889  0.0741        0.755        1.000
-  406     16       1    0.833  0.0878        0.678        1.000
-  479     14       1    0.774  0.0997        0.601        0.996
-  546     12       1    0.709  0.1103        0.523        0.962
- 1093      5       1    0.567  0.1546        0.333        0.968</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>survminer<span class="sc">::</span><span class="fu">ggsurvplot</span>(sfit, </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">conf.int=</span>T, </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">pval=</span><span class="cn">TRUE</span>, </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table=</span>T, </span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.title=</span><span class="st">"MGC Content"</span>,  </span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">test.for.trend =</span> T,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">title=</span><span class="st">"Overall Survival (OS)"</span>, </span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlab =</span> <span class="st">"Time in months"</span>,   <span class="co"># customize X axis label.</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">break.time.by =</span> <span class="dv">500</span>,     <span class="co"># break X axis in time intervals by 500.</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table.height =</span> <span class="fl">0.25</span>, <span class="co"># the height of the risk table</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">conf.int.style =</span> <span class="st">"step"</span>,  <span class="co"># customize style of confidence intervals</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2500</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="TCGA_Analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="960"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sfit <span class="ot">&lt;-</span> survival<span class="sc">::</span><span class="fu">survfit</span>(survival<span class="sc">::</span><span class="fu">Surv</span>(PFI.time, PFI) <span class="sc">~</span> MGC_Three, <span class="at">data=</span>clinical)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>survminer<span class="sc">::</span><span class="fu">ggsurvplot</span>(sfit, </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">conf.int=</span>T, </span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">pval=</span><span class="cn">TRUE</span>, </span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table=</span>T, </span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.title=</span><span class="st">"MGC Content"</span>,  </span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">test.for.trend =</span> T,</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">title=</span><span class="st">"Progression Free Interval (PFI)"</span>, </span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlab =</span> <span class="st">"Time in months"</span>,   <span class="co"># customize X axis label.</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">break.time.by =</span> <span class="dv">500</span>,     <span class="co"># break X axis in time intervals by 500.</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table.height =</span> <span class="fl">0.25</span>, <span class="co"># the height of the risk table</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">conf.int.style =</span> <span class="st">"step"</span>,  <span class="co"># customize style of confidence intervals</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2500</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="TCGA_Analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="960"></p>
-</div>
-</div>
-</section>
-<section id="keratin-content-survival" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="keratin-content-survival"><span class="header-section-number">2.3</span> Keratin Content survival</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sfit <span class="ot">&lt;-</span> survival<span class="sc">::</span><span class="fu">survfit</span>(survival<span class="sc">::</span><span class="fu">Surv</span>(OS.time, OS)<span class="sc">~</span>K_state, <span class="at">data=</span>clinical)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>survminer<span class="sc">::</span><span class="fu">ggsurvplot</span>(sfit, </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">conf.int=</span>T, </span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">pval=</span><span class="cn">TRUE</span>, </span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table=</span>T, </span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.title=</span><span class="st">"Keratin Content"</span>,  </span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">test.for.trend =</span> F,</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">title=</span><span class="st">"Overall Survival (OS)"</span>, </span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlab =</span> <span class="st">"Time in months"</span>,   <span class="co"># customize X axis label.</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">break.time.by =</span> <span class="dv">500</span>,     <span class="co"># break X axis in time intervals by 500.</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table.height =</span> <span class="fl">0.25</span>, <span class="co"># the height of the risk table</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">conf.int.style =</span> <span class="st">"step"</span>,  <span class="co"># customize style of confidence intervals</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2500</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="TCGA_Analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="960"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sfit <span class="ot">&lt;-</span> survival<span class="sc">::</span><span class="fu">survfit</span>(survival<span class="sc">::</span><span class="fu">Surv</span>(PFI.time, PFI)<span class="sc">~</span>K_state, <span class="at">data=</span>clinical)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>survminer<span class="sc">::</span><span class="fu">ggsurvplot</span>(sfit, </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">conf.int=</span>T, </span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">pval=</span><span class="cn">TRUE</span>, </span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table=</span>T, </span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.title=</span><span class="st">"Keratin Content"</span>,  </span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">test.for.trend =</span> F,</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">title=</span><span class="st">"Progression Free Interval (PFI)"</span>, </span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlab =</span> <span class="st">"Time in months"</span>,   <span class="co"># customize X axis label.</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">break.time.by =</span> <span class="dv">500</span>,     <span class="co"># break X axis in time intervals by 500.</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table.height =</span> <span class="fl">0.25</span>, <span class="co"># the height of the risk table</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">conf.int.style =</span> <span class="st">"step"</span>,  <span class="co"># customize style of confidence intervals</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2500</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="TCGA_Analysis_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="960"></p>
-</div>
-</div>
-</section>
 </section>
 <section id="deg-analysis-using-deseq2" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> DEG analysis using DESEq2</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reading RNAseq data</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>rna <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'RNAseq/Tumor_HNSC_bulk_PreProcessed.csv'</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>rna <span class="ot">&lt;-</span> <span class="fu">type.convert</span>(rna, <span class="at">as.is =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(rna) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">.'</span>,<span class="st">'-'</span>,<span class="fu">substr</span>(<span class="fu">colnames</span>(rna),<span class="dv">1</span>,<span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reading RNAseq data</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>rna <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'RNAseq/Tumor_HNSC_bulk_PreProcessed.csv'</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>rna <span class="ot">&lt;-</span> <span class="fu">type.convert</span>(rna, <span class="at">as.is =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(rna) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">.'</span>,<span class="st">'-'</span>,<span class="fu">substr</span>(<span class="fu">colnames</span>(rna),<span class="dv">1</span>,<span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Keeping only relevant bulk data</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>rna <span class="ot">&lt;-</span> rna[,<span class="fu">colnames</span>(rna) <span class="sc">%in%</span> <span class="fu">rownames</span>(clinical)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Keeping only relevant bulk data</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>rna <span class="ot">&lt;-</span> rna[,<span class="fu">colnames</span>(rna) <span class="sc">%in%</span> <span class="fu">rownames</span>(clinical)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Keep  only the patients with available bulk RNA seq</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>clinical_rna <span class="ot">&lt;-</span> clinical[<span class="fu">rownames</span>(clinical) <span class="sc">%in%</span> <span class="fu">colnames</span>(rna),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Keep  only the patients with available bulk RNA seq</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>clinical_rna <span class="ot">&lt;-</span> clinical[<span class="fu">rownames</span>(clinical) <span class="sc">%in%</span> <span class="fu">colnames</span>(rna),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Need to reorder the colnames and rownames to run DESeq2</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>rna <span class="ot">=</span> rna[,<span class="fu">order</span>(<span class="fu">colnames</span>(rna))]</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>clinical_rna <span class="ot">=</span> clinical_rna[<span class="fu">order</span>(<span class="fu">rownames</span>(clinical_rna)),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Need to reorder the colnames and rownames to run DESeq2</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>rna <span class="ot">=</span> rna[,<span class="fu">order</span>(<span class="fu">colnames</span>(rna))]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>clinical_rna <span class="ot">=</span> clinical_rna[<span class="fu">order</span>(<span class="fu">rownames</span>(clinical_rna)),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="running-deseq2-model" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="running-deseq2-model"><span class="header-section-number">3.1</span> Running DESEq2 model</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Run DESEq2 model</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> rna,</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">colData =</span> clinical_rna,</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">design  =</span>  <span class="sc">~</span> MGC_Three)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">DESeq</span>(dds)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>DESeq2<span class="sc">::</span><span class="fu">resultsNames</span>(dds) <span class="co"># lists the coefficients</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Run DESEq2 model</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> rna,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">colData =</span> clinical_rna,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">design  =</span>  <span class="sc">~</span> MGC_Three)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">DESeq</span>(dds)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>DESeq2<span class="sc">::</span><span class="fu">resultsNames</span>(dds) <span class="co"># lists the coefficients</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Intercept"                        "MGC_Three_MGC.Low_vs_MGC.High"   
 [3] "MGC_Three_MGC.Medium_vs_MGC.High"</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>dds_vst <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">vst</span>(dds)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>matrix_vst <span class="ot">&lt;-</span> SummarizedExperiment<span class="sc">::</span><span class="fu">assay</span>(dds_vst)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dds_vst <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">vst</span>(dds)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>matrix_vst <span class="ot">&lt;-</span> SummarizedExperiment<span class="sc">::</span><span class="fu">assay</span>(dds_vst)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Retrieving results</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">results</span>(dds, <span class="at">name=</span><span class="st">"MGC_Three_MGC.Low_vs_MGC.High"</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Change sign of Log2Fold Change</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>log2FoldChange  <span class="ot">=</span> <span class="sc">-</span>res<span class="sc">$</span>log2FoldChange</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Retrieving results</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">results</span>(dds, <span class="at">name=</span><span class="st">"MGC_Three_MGC.Low_vs_MGC.High"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Change sign of Log2Fold Change</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>log2FoldChange  <span class="ot">=</span> <span class="sc">-</span>res<span class="sc">$</span>log2FoldChange</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(<span class="fu">as.data.frame</span>(res))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(<span class="fu">as.data.frame</span>(res))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Save the DEGs into  a csv file</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="fu">as.data.frame</span>(res), <span class="at">file=</span><span class="st">"MGC_High_Vs_MGC_Low_DEGs.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Save the DEGs into  a csv file</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="fu">as.data.frame</span>(res), <span class="at">file=</span><span class="st">"MGC_High_Vs_MGC_Low_DEGs.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="volcano-plot" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="volcano-plot"><span class="header-section-number">3.2</span> Volcano Plot</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>EnhancedVolcano<span class="sc">::</span><span class="fu">EnhancedVolcano</span>(res,</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">lab =</span> <span class="fu">rownames</span>(res),</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">x =</span> <span class="st">"log2FoldChange"</span>,</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="st">"padj"</span>,</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">title =</span> <span class="st">""</span>,</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">subtitle =</span> <span class="st">"MGC Low vs. MGC High"</span>,</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">selectLab =</span> <span class="fu">c</span>(<span class="st">"MARCO"</span>,</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"CHIT1"</span>,</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"DCSTAMP"</span>,</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"ARG1"</span>,</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"FBP1"</span>,</span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"SPP1"</span>,</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"LPL"</span>,</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"ITGAX"</span>,</span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"OSCAR"</span>,</span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"SULT1C2"</span>),</span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>                <span class="at">xlab =</span> <span class="fu">bquote</span>(<span class="sc">~</span>Log[<span class="dv">2</span>]<span class="sc">~</span> <span class="st">"fold change"</span>),</span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>                <span class="at">ylab =</span> <span class="fu">bquote</span>(<span class="sc">~-</span>Log[<span class="dv">10</span>]<span class="sc">~</span>adjusted<span class="sc">~</span><span class="fu">italic</span>(P)),</span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>                <span class="at">pCutoff =</span> <span class="fl">0.05</span>,</span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>                <span class="at">FCcutoff =</span> <span class="fl">0.25</span>,</span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>                <span class="at">colAlpha =</span> <span class="dv">1</span>,</span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>                <span class="at">legendPosition =</span> <span class="st">""</span>,</span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>                <span class="at">legendLabSize =</span> <span class="dv">10</span>,</span>
-<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>                <span class="at">legendIconSize =</span> <span class="fl">3.0</span>,</span>
-<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>                <span class="at">border =</span> <span class="st">"full"</span>,</span>
-<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>                <span class="at">borderColour =</span> <span class="st">"black"</span>,</span>
-<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>                <span class="at">gridlines.major =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>                <span class="at">gridlines.minor =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>                <span class="at">drawConnectors =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>                <span class="at">widthConnectors =</span> <span class="dv">1</span>,</span>
-<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>                <span class="at">colConnectors =</span> <span class="st">'black'</span>,</span>
-<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>                <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">6</span>) ,</span>
-<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>                <span class="at">boxedLabels =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>                <span class="at">labCol =</span> <span class="st">'black'</span>,</span>
-<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>                <span class="at">labFace =</span> <span class="st">'bold'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>EnhancedVolcano<span class="sc">::</span><span class="fu">EnhancedVolcano</span>(res,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">lab =</span> <span class="fu">rownames</span>(res),</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">x =</span> <span class="st">"log2FoldChange"</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="st">"padj"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">title =</span> <span class="st">""</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">subtitle =</span> <span class="st">"MGC Low vs. MGC High"</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">selectLab =</span> <span class="fu">c</span>(<span class="st">"MARCO"</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"CHIT1"</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"DCSTAMP"</span>,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"ARG1"</span>,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"FBP1"</span>,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"SPP1"</span>,</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"LPL"</span>,</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"ITGAX"</span>,</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"OSCAR"</span>,</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"SULT1C2"</span>),</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>                <span class="at">xlab =</span> <span class="fu">bquote</span>(<span class="sc">~</span>Log[<span class="dv">2</span>]<span class="sc">~</span> <span class="st">"fold change"</span>),</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>                <span class="at">ylab =</span> <span class="fu">bquote</span>(<span class="sc">~-</span>Log[<span class="dv">10</span>]<span class="sc">~</span>adjusted<span class="sc">~</span><span class="fu">italic</span>(P)),</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>                <span class="at">pCutoff =</span> <span class="fl">0.05</span>,</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>                <span class="at">FCcutoff =</span> <span class="fl">0.25</span>,</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>                <span class="at">colAlpha =</span> <span class="dv">1</span>,</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>                <span class="at">legendPosition =</span> <span class="st">""</span>,</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>                <span class="at">legendLabSize =</span> <span class="dv">10</span>,</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>                <span class="at">legendIconSize =</span> <span class="fl">3.0</span>,</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>                <span class="at">border =</span> <span class="st">"full"</span>,</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>                <span class="at">borderColour =</span> <span class="st">"black"</span>,</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>                <span class="at">gridlines.major =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>                <span class="at">gridlines.minor =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>                <span class="at">drawConnectors =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>                <span class="at">widthConnectors =</span> <span class="dv">1</span>,</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>                <span class="at">colConnectors =</span> <span class="st">'black'</span>,</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>                <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">6</span>) ,</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>                <span class="at">boxedLabels =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>                <span class="at">labCol =</span> <span class="st">'black'</span>,</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>                <span class="at">labFace =</span> <span class="st">'bold'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="TCGA_Analysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="960"></p>
+<p><img src="TCGA_Analysis_for_Paper_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="960"></p>
 </div>
 </div>
 </section>
 <section id="ma-plot" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="ma-plot"><span class="header-section-number">3.3</span> MA Plot</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggmaplot</span>(res, <span class="at">main =</span> <span class="fu">expression</span>(<span class="st">"MGC High"</span> <span class="sc">%-&gt;%</span> <span class="st">"MGC Low"</span>),</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">fdr =</span> <span class="fl">0.05</span>, <span class="at">fc =</span> <span class="fl">0.25</span>, <span class="at">size =</span> <span class="fl">0.4</span>,</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">"#B31B21"</span>, <span class="st">"#1465AC"</span>, <span class="st">"darkgray"</span>),</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">genenames =</span> <span class="fu">as.vector</span>(res<span class="sc">$</span>name),</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">legend =</span> <span class="st">"top"</span>, <span class="at">top =</span> <span class="dv">20</span>,</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">font.label =</span> <span class="fu">c</span>(<span class="st">"bold"</span>, <span class="dv">11</span>), <span class="at">label.rectangle =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>   <span class="at">font.legend =</span> <span class="st">"bold"</span>,</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>   <span class="at">font.main =</span> <span class="st">"bold"</span>,</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>   <span class="at">ggtheme =</span> ggplot2<span class="sc">::</span><span class="fu">theme_minimal</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggmaplot</span>(res, <span class="at">main =</span> <span class="fu">expression</span>(<span class="st">"MGC High"</span> <span class="sc">%-&gt;%</span> <span class="st">"MGC Low"</span>),</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">fdr =</span> <span class="fl">0.05</span>, <span class="at">fc =</span> <span class="fl">0.25</span>, <span class="at">size =</span> <span class="fl">0.4</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">"#B31B21"</span>, <span class="st">"#1465AC"</span>, <span class="st">"darkgray"</span>),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">genenames =</span> <span class="fu">as.vector</span>(res<span class="sc">$</span>name),</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">legend =</span> <span class="st">"top"</span>, <span class="at">top =</span> <span class="dv">20</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">font.label =</span> <span class="fu">c</span>(<span class="st">"bold"</span>, <span class="dv">11</span>), <span class="at">label.rectangle =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>   <span class="at">font.legend =</span> <span class="st">"bold"</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>   <span class="at">font.main =</span> <span class="st">"bold"</span>,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>   <span class="at">ggtheme =</span> ggplot2<span class="sc">::</span><span class="fu">theme_minimal</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="TCGA_Analysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="960"></p>
+<p><img src="TCGA_Analysis_for_Paper_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="960"></p>
 </div>
 </div>
 </section>
 <section id="bulk-rnaseq-signature-genes" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="bulk-rnaseq-signature-genes"><span class="header-section-number">3.4</span> Bulk RNAseq signature genes</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'res' to a data frame</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(res)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Select rows with significant gene data based on criteria</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep rows where 'padj' is less than 0.05, 'padj' is not missing (not NA), and 'log2FoldChange' is greater than 0.25</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>signif_res <span class="ot">&lt;-</span> res[res<span class="sc">$</span>padj <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(res<span class="sc">$</span>padj) <span class="sc">&amp;</span> res<span class="sc">$</span>log2FoldChange <span class="sc">&gt;</span> <span class="fl">0.25</span>, ]</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the gene names (row names) from the 'signif_res' data frame</span></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>signif_res <span class="ot">&lt;-</span> <span class="fu">rownames</span>(signif_res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'res' to a data frame</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(res)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Select rows with significant gene data based on criteria</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep rows where 'padj' is less than 0.05, 'padj' is not missing (not NA), and 'log2FoldChange' is greater than 0.25</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>signif_res <span class="ot">&lt;-</span> res[res<span class="sc">$</span>padj <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(res<span class="sc">$</span>padj) <span class="sc">&amp;</span> res<span class="sc">$</span>log2FoldChange <span class="sc">&gt;</span> <span class="fl">0.25</span>, ]</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the gene names (row names) from the 'signif_res' data frame</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>signif_res <span class="ot">&lt;-</span> <span class="fu">rownames</span>(signif_res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(signif_res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(signif_res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "MATK"          "TENM1"         "MARCO"         "FAM184B"      
  [5] "PTGER3"        "POLB"          "NECAB2"        "ABCC1"        
@@ -662,371 +409,131 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the selected gene names to a CSV file named 'signatures_genes_bulk_RNAseq.csv'</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(signif_res, <span class="st">'signatures_genes_bulk_RNAseq.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the selected gene names to a CSV file named 'signatures_genes_bulk_RNAseq.csv'</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(signif_res, <span class="st">'signatures_genes_bulk_RNAseq.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="common-gene-signature-with-visium-spots" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="common-gene-signature-with-visium-spots"><span class="header-section-number">3.5</span> Common gene signature with Visium Spots</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper function to display Venn diagram</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>display_venn <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...){</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(VennDiagram)</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">grid.newpage</span>()</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  venn_object <span class="ot">&lt;-</span> <span class="fu">venn.diagram</span>(x, <span class="at">filename =</span> <span class="cn">NULL</span>, ...)</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">grid.draw</span>(venn_object)</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>Visium_MGC_Signature <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"Visium_MGC_Signature.csv"</span>)</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>MGC_Markers <span class="ot">&lt;-</span> Visium_MGC_Signature<span class="sc">$</span>...<span class="dv">1</span></span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(MGC_Markers,signif_res)</span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Further customization</span></span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="fu">display_venn</span>(</span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>  x,</span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">category.names =</span> <span class="fu">c</span>(<span class="st">"Visium"</span>,<span class="st">"Bulk"</span>),</span>
-<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Circles</span></span>
-<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">lwd =</span> <span class="dv">1</span>,</span>
-<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">"#999999"</span>, <span class="st">"#E69F00"</span>),</span>
-<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Numbers</span></span>
-<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">cex =</span> <span class="dv">2</span>,</span>
-<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set names</span></span>
-<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">cat.cex =</span> <span class="dv">1</span>,</span>
-<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">cat.fontface =</span> <span class="st">"bold"</span>,</span>
-<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">cat.default.pos =</span> <span class="st">"outer"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper function to display Venn diagram</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>display_venn <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...){</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(VennDiagram)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">grid.newpage</span>()</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  venn_object <span class="ot">&lt;-</span> <span class="fu">venn.diagram</span>(x, <span class="at">filename =</span> <span class="cn">NULL</span>, ...)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">grid.draw</span>(venn_object)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>Visium_MGC_Signature <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"Visium_MGC_Signature.csv"</span>)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>MGC_Markers <span class="ot">&lt;-</span> Visium_MGC_Signature<span class="sc">$</span>...<span class="dv">1</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(MGC_Markers,signif_res)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Further customization</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="fu">display_venn</span>(</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  x,</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">category.names =</span> <span class="fu">c</span>(<span class="st">"Visium"</span>,<span class="st">"Bulk"</span>),</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Circles</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">lwd =</span> <span class="dv">1</span>,</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">"#999999"</span>, <span class="st">"#E69F00"</span>),</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Numbers</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">cex =</span> <span class="dv">2</span>,</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set names</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">cat.cex =</span> <span class="dv">1</span>,</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">cat.fontface =</span> <span class="st">"bold"</span>,</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">cat.default.pos =</span> <span class="st">"outer"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="TCGA_Analysis_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="768"></p>
+<p><img src="TCGA_Analysis_for_Paper_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 </section>
 <section id="gene-ontology-based-on-degs" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="gene-ontology-based-on-degs"><span class="header-section-number">3.6</span> Gene Ontology based on DEGs</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create background dataset for hypergeometric testing using all genes tested for</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co">#significance in the results</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>all_genes <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">rownames</span>(res))</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract significant results</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>signif_res <span class="ot">&lt;-</span> res[res<span class="sc">$</span>padj <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(res<span class="sc">$</span>padj) <span class="sc">&amp;</span> res<span class="sc">$</span>log2FoldChange <span class="sc">&gt;</span> <span class="fl">0.25</span>, ]</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>signif_genes <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">rownames</span>(signif_res))</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Run GO enrichment analysis</span></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>ego <span class="ot">&lt;-</span> clusterProfiler<span class="sc">::</span><span class="fu">enrichGO</span>(<span class="at">gene =</span> signif_genes,</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">universe =</span> all_genes,</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">keyType =</span> <span class="st">"SYMBOL"</span>,</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">OrgDb =</span> org.Hs.eg.db<span class="sc">::</span>org.Hs.eg.db,</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">ont =</span> <span class="st">"BP"</span>,</span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">pAdjustMethod =</span> <span class="st">"BH"</span>,</span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">qvalueCutoff =</span> <span class="fl">0.05</span>,</span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">readable =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Output results from GO analysis to a table</span></span>
-<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>cluster_summary <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ego)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create background dataset for hypergeometric testing using all genes tested for</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#significance in the results</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>all_genes <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">rownames</span>(res))</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract significant results</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>signif_res <span class="ot">&lt;-</span> res[res<span class="sc">$</span>padj <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(res<span class="sc">$</span>padj) <span class="sc">&amp;</span> res<span class="sc">$</span>log2FoldChange <span class="sc">&gt;</span> <span class="fl">0.25</span>, ]</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>signif_genes <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">rownames</span>(signif_res))</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Run GO enrichment analysis</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>ego <span class="ot">&lt;-</span> clusterProfiler<span class="sc">::</span><span class="fu">enrichGO</span>(<span class="at">gene =</span> signif_genes,</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">universe =</span> all_genes,</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">keyType =</span> <span class="st">"SYMBOL"</span>,</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">OrgDb =</span> org.Hs.eg.db<span class="sc">::</span>org.Hs.eg.db,</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">ont =</span> <span class="st">"BP"</span>,</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">pAdjustMethod =</span> <span class="st">"BH"</span>,</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">qvalueCutoff =</span> <span class="fl">0.05</span>,</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">readable =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Output results from GO analysis to a table</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>cluster_summary <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ego)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>gg1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cluster_summary,</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Description,p.adjust), <span class="at">y =</span> <span class="sc">-</span><span class="fu">log10</span>(p.adjust), <span class="at">size =</span> <span class="sc">-</span><span class="fu">log10</span>(p.adjust), <span class="at">fill =</span> <span class="sc">-</span><span class="fu">log10</span>(p.adjust))) <span class="sc">+</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">y =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>) <span class="sc">+</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">12.5</span>)) <span class="sc">+</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">low =</span> <span class="st">'royalblue'</span>, <span class="at">high =</span> <span class="st">'red4'</span>) <span class="sc">+</span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">''</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">'Enrichment score'</span>) <span class="sc">+</span></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">'GO Biological processes'</span>,</span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">'Enriched Terms'</span>,</span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">'Cut-off lines drawn at equivalents of p=0.05, p=0.01, p=0.001'</span>) <span class="sc">+</span></span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span>), <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.01</span>), <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.001</span>)),</span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="fu">c</span>(<span class="st">"dotted"</span>, <span class="st">"longdash"</span>, <span class="st">"solid"</span>),</span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"black"</span>, <span class="st">"black"</span>),</span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="dv">3</span>)) <span class="sc">+</span></span>
-<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">24</span>) <span class="sc">+</span></span>
-<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">'right'</span>,</span>
-<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.background =</span> <span class="fu">element_rect</span>(),</span>
-<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">'bold'</span>, <span class="at">vjust =</span> <span class="dv">1</span>),</span>
-<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">'bold'</span>, <span class="at">vjust =</span> <span class="dv">1</span>),</span>
-<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">'bold'</span>, <span class="at">vjust =</span> <span class="dv">1</span>),</span>
-<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">'bold'</span>, <span class="at">hjust =</span> <span class="fl">1.10</span>),</span>
-<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">'bold'</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>,<span class="at">color =</span> cluster_summary<span class="sc">$</span>TopicNum),</span>
-<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">'bold'</span>),</span>
-<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">'bold'</span>),</span>
-<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">'bold'</span>),</span>
-<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">'black'</span>),</span>
-<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Legend</span></span>
-<span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.key =</span> <span class="fu">element_blank</span>(), <span class="co"># removes the border</span></span>
-<span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>), <span class="co"># Sets overall area/size of the legend</span></span>
-<span id="cb33-38"><a href="#cb33-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>), <span class="co"># Text size</span></span>
-<span id="cb33-39"><a href="#cb33-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>)) <span class="sc">+</span></span>
-<span id="cb33-40"><a href="#cb33-40" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb33-41"><a href="#cb33-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
-<span id="cb33-42"><a href="#cb33-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-43"><a href="#cb33-43" aria-hidden="true" tabindex="-1"></a>gg1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>gg1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cluster_summary,</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Description,p.adjust), <span class="at">y =</span> <span class="sc">-</span><span class="fu">log10</span>(p.adjust), <span class="at">size =</span> <span class="sc">-</span><span class="fu">log10</span>(p.adjust), <span class="at">fill =</span> <span class="sc">-</span><span class="fu">log10</span>(p.adjust))) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">y =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>) <span class="sc">+</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">12.5</span>)) <span class="sc">+</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">low =</span> <span class="st">'royalblue'</span>, <span class="at">high =</span> <span class="st">'red4'</span>) <span class="sc">+</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">''</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">'Enrichment score'</span>) <span class="sc">+</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">'GO Biological processes'</span>,</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">'Enriched Terms'</span>,</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">'Cut-off lines drawn at equivalents of p=0.05, p=0.01, p=0.001'</span>) <span class="sc">+</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span>), <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.01</span>), <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.001</span>)),</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="fu">c</span>(<span class="st">"dotted"</span>, <span class="st">"longdash"</span>, <span class="st">"solid"</span>),</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"black"</span>, <span class="st">"black"</span>),</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="dv">3</span>)) <span class="sc">+</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">24</span>) <span class="sc">+</span></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">'right'</span>,</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.background =</span> <span class="fu">element_rect</span>(),</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">'bold'</span>, <span class="at">vjust =</span> <span class="dv">1</span>),</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">'bold'</span>, <span class="at">vjust =</span> <span class="dv">1</span>),</span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">'bold'</span>, <span class="at">vjust =</span> <span class="dv">1</span>),</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">'bold'</span>, <span class="at">hjust =</span> <span class="fl">1.10</span>),</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">'bold'</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>,<span class="at">color =</span> cluster_summary<span class="sc">$</span>TopicNum),</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">'bold'</span>),</span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">'bold'</span>),</span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">'bold'</span>),</span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">'black'</span>),</span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Legend</span></span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.key =</span> <span class="fu">element_blank</span>(), <span class="co"># removes the border</span></span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>), <span class="co"># Sets overall area/size of the legend</span></span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>), <span class="co"># Text size</span></span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>)) <span class="sc">+</span></span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a>gg1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="TCGA_Analysis_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="1440"></p>
+<p><img src="TCGA_Analysis_for_Paper_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="1440"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#To color genes by log2 fold changes</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>signif_res_lFC <span class="ot">&lt;-</span> signif_res<span class="sc">$</span>log2FoldChange</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>clusterProfiler<span class="sc">::</span><span class="fu">cnetplot</span>(ego,</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">categorySize=</span><span class="st">"pvalue"</span>,</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">showCategory =</span> <span class="dv">12</span>,</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">foldChange=</span> signif_res_lFC,</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">vertex.label.font=</span><span class="dv">6</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#To color genes by log2 fold changes</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>signif_res_lFC <span class="ot">&lt;-</span> signif_res<span class="sc">$</span>log2FoldChange</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>clusterProfiler<span class="sc">::</span><span class="fu">cnetplot</span>(ego,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">categorySize=</span><span class="st">"pvalue"</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">showCategory =</span> <span class="dv">12</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">foldChange=</span> signif_res_lFC,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">vertex.label.font=</span><span class="dv">6</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="TCGA_Analysis_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="1440"></p>
+<p><img src="TCGA_Analysis_for_Paper_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="1440"></p>
 </div>
 </div>
 </section>
 </section>
-<section id="survival-analysis-based-on-gene-signatures" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Survival Analysis based on gene signatures</h1>
+<section id="session-info" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Session Info</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Selecting genes of interest</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>genes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"CHIT1"</span>,<span class="st">'TREM2'</span>)</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> matrix_vst[genes,]</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(mat)</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Subsetting relevant annotations from clinical</span></span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>anno <span class="ot">&lt;-</span> clinical_rna[,<span class="fu">c</span>(<span class="st">'MGC_Three'</span>,<span class="st">'K_state'</span>,<span class="st">'PFI'</span>,<span class="st">'PFI.time'</span>,<span class="st">'OS'</span>,<span class="st">'OS.time'</span>)]</span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Merge the annotations  with the matrix</span></span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>matrix <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">t</span>(mat),anno)</span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>matrix<span class="sc">$</span>mean <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(matrix[, <span class="fu">c</span>(<span class="st">'CHIT1'</span>,<span class="st">'TREM2'</span>)], <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="automatic-cutoffs-for-os" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="automatic-cutoffs-for-os"><span class="header-section-number">4.1</span> Automatic cutoffs for OS</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Automatic cutoffs for gene signature</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>clinical.cut <span class="ot">&lt;-</span> survminer<span class="sc">::</span><span class="fu">surv_cutpoint</span>(</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    matrix,</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">time =</span> <span class="st">"OS.time"</span>,</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">event =</span> <span class="st">"OS"</span>,</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">variables =</span> <span class="fu">c</span>(<span class="st">"mean"</span>)</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(clinical.cut, <span class="st">"mean"</span>, <span class="at">palette =</span> <span class="st">"npg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$mean</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="TCGA_Analysis_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid" width="768"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>clinical.cat <span class="ot">&lt;-</span> survminer<span class="sc">::</span><span class="fu">surv_categorize</span>(clinical.cut) </span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>sfit <span class="ot">&lt;-</span> survival<span class="sc">::</span><span class="fu">survfit</span>(survival<span class="sc">::</span><span class="fu">Surv</span>(OS.time, OS)<span class="sc">~</span>mean, <span class="at">data=</span>clinical.cat)</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>survminer<span class="sc">::</span><span class="fu">ggsurvplot</span>(sfit,</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">conf.int=</span>F,</span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">pval=</span><span class="cn">TRUE</span>,</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table=</span>T,</span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">break.time.by =</span> <span class="dv">500</span>,</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">title=</span><span class="st">"OS"</span>,</span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2500</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="TCGA_Analysis_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="768"></p>
-</div>
-</div>
-</section>
-<section id="automatic-cutoffs-for-pfi" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="automatic-cutoffs-for-pfi"><span class="header-section-number">4.2</span> Automatic cutoffs for PFI</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Automatic cutoffs for gene signature</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>clinical.cut <span class="ot">&lt;-</span> survminer<span class="sc">::</span><span class="fu">surv_cutpoint</span>(</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    matrix,</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">time =</span> <span class="st">"PFI.time"</span>,</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">event =</span> <span class="st">"PFI"</span>,</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">variables =</span> <span class="fu">c</span>(<span class="st">"mean"</span>)</span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(clinical.cut, <span class="st">"mean"</span>, <span class="at">palette =</span> <span class="st">"npg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$mean</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="TCGA_Analysis_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="768"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>clinical.cat <span class="ot">&lt;-</span> survminer<span class="sc">::</span><span class="fu">surv_categorize</span>(clinical.cut) </span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>sfit <span class="ot">&lt;-</span> survival<span class="sc">::</span><span class="fu">survfit</span>(survival<span class="sc">::</span><span class="fu">Surv</span>(PFI.time, PFI)<span class="sc">~</span>mean, <span class="at">data=</span>clinical.cat)</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>survminer<span class="sc">::</span><span class="fu">ggsurvplot</span>(sfit,</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">conf.int=</span>F,</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">pval=</span><span class="cn">TRUE</span>,</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table=</span>T,</span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">break.time.by =</span> <span class="dv">500</span>,</span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">title=</span><span class="st">"OS"</span>,</span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2500</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="TCGA_Analysis_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="768"></p>
-</div>
-</div>
-</section>
-</section>
-<section id="analyzing-wes-snp-data" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Analyzing WES SNP data</h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>maf <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'WES/Mutation_Data_HNSC.csv'</span>,<span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Subset only on the patients in the study</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>maf <span class="ot">&lt;-</span> maf[maf<span class="sc">$</span>bcr_patient_barcode <span class="sc">%in%</span> <span class="fu">rownames</span>(clinical) , ]</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>Tumor_Sample_Barcode <span class="ot">&lt;-</span> <span class="fu">unique</span>(maf<span class="sc">$</span>Tumor_Sample_Barcode)</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>Tumor_Sample_Barcode <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(Tumor_Sample_Barcode)</span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(Tumor_Sample_Barcode) <span class="ot">&lt;-</span> <span class="fu">substr</span>(Tumor_Sample_Barcode<span class="sc">$</span>Tumor_Sample_Barcode,<span class="dv">1</span>,<span class="dv">12</span>)</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>clinical_mut <span class="ot">&lt;-</span> <span class="fu">cbind</span>(clinical[<span class="fu">rownames</span>(clinical) <span class="sc">%in%</span> <span class="fu">rownames</span>(Tumor_Sample_Barcode),], Tumor_Sample_Barcode)</span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>maf <span class="ot">&lt;-</span> maftools<span class="sc">::</span><span class="fu">read.maf</span>(maf, <span class="at">clinicalData =</span> clinical_mut)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>-Validating
--Silent variants: 2810 
--Summarizing
---Possible FLAGS among top ten genes:
-  TTN
-  SYNE1
--Processing clinical data
--Finished in 0.898s elapsed (0.880s cpu) </code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>maftools<span class="sc">::</span><span class="fu">plotmafSummary</span>(<span class="at">maf =</span> maf, <span class="at">rmOutlier =</span> <span class="cn">TRUE</span>, <span class="at">addStat =</span> <span class="st">'median'</span>, <span class="at">dashboard =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="TCGA_Analysis_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid" width="768"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#lollipop plot for TP53, which is one of the most frequent mutated gene</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>maftools<span class="sc">::</span><span class="fu">lollipopPlot</span>(</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">maf =</span> maf,</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">gene =</span> <span class="st">'TP53'</span>,</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">showMutationRate =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   HGNC    refseq.ID   protein.ID aa.length
-1: TP53    NM_000546    NP_000537       393
-2: TP53 NM_001126112 NP_001119584       393
-3: TP53 NM_001126113 NP_001119585       346
-4: TP53 NM_001126114 NP_001119586       341
-5: TP53 NM_001126115 NP_001119587       261
-6: TP53 NM_001126116 NP_001119588       209
-7: TP53 NM_001126117 NP_001119589       214
-8: TP53 NM_001126118 NP_001119590       354</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="TCGA_Analysis_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid" width="768"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>genes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'CHIT1'</span>,<span class="st">'CHI3L1'</span>,<span class="st">'CD68'</span>,<span class="st">'TREM2'</span>)</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>maftools<span class="sc">::</span><span class="fu">oncoplot</span>(<span class="at">maf =</span> maf, <span class="at">genes =</span> genes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="TCGA_Analysis_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid" width="768"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#oncoplot for top ten mutated genes.</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>maftools<span class="sc">::</span><span class="fu">oncoplot</span>(<span class="at">maf =</span> maf, <span class="at">top =</span> <span class="dv">10</span>,<span class="at">clinicalFeatures =</span> <span class="fu">c</span>(<span class="st">'MGC_Three'</span>),<span class="at">sortByAnnotation =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="TCGA_Analysis_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid" width="768"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>TMB <span class="ot">&lt;-</span> maf<span class="sc">@</span>variant.type.summary</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>TMB <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(TMB, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(TMB) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">.'</span>,<span class="st">'-'</span>,<span class="fu">substr</span>(<span class="fu">rownames</span>(TMB),<span class="dv">1</span>,<span class="dv">12</span>))</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>clinical_mut <span class="ot">&lt;-</span> <span class="fu">cbind</span>(clinical_mut,TMB)</span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>my_comparisons <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"MGC Low"</span>, <span class="st">"MGC Medium"</span>), </span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">c</span>(<span class="st">"MGC Medium"</span>, <span class="st">"MGC High"</span>), </span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">c</span>(<span class="st">"MGC High"</span>, <span class="st">"MGC Low"</span>))</span>
-<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(clinical_mut, </span>
-<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>             ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> MGC_Three, <span class="at">y =</span> total, <span class="at">fill=</span>MGC_Three)) <span class="sc">+</span> </span>
-<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_violin</span>(<span class="at">trim=</span><span class="cn">FALSE</span>)<span class="sc">+</span></span>
-<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_boxplot</span>(<span class="at">width=</span><span class="fl">0.1</span>, <span class="at">fill=</span><span class="st">"white"</span>)<span class="sc">+</span></span>
-<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"TMB by MGC Content"</span>,<span class="at">x=</span><span class="st">"MGC Content"</span>, <span class="at">y =</span> <span class="st">"Tumor Mutational Burden"</span>) <span class="sc">+</span> </span>
-<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>  ggpubr<span class="sc">::</span><span class="fu">stat_compare_means</span>(<span class="at">comparisons =</span> my_comparisons,<span class="at">paired =</span> F) <span class="sc">+</span></span>
-<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>  ggprism<span class="sc">::</span><span class="fu">theme_prism</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="TCGA_Analysis_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid" width="768"></p>
-</div>
-</div>
-</section>
-<section id="analyzing-mirnaseq-data-deseq2" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Analyzing miRNAseq data (DESEq2)</h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>miRNA <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'miRNAseq/HNSC_miRNA_Data.csv'</span>,<span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Set the patients IDs to bcr_patient_barcode</span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(miRNA) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">.'</span>,<span class="st">'-'</span>,<span class="fu">substr</span>(<span class="fu">colnames</span>(miRNA),<span class="dv">1</span>,<span class="dv">12</span>))</span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Keep  only the patients with available miRNA data</span></span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>miRNA <span class="ot">&lt;-</span> miRNA[,<span class="fu">colnames</span>(miRNA) <span class="sc">%in%</span> <span class="fu">rownames</span>(clinical)]</span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>clinical_miRNA <span class="ot">&lt;-</span> clinical[<span class="fu">colnames</span>(miRNA),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Run DESEq2 model</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>dds_miRNA <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> miRNA,</span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">colData =</span> clinical_miRNA,</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">design  =</span>  <span class="sc">~</span> MGC_Three)</span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>dds_miRNA <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">DESeq</span>(dds_miRNA)</span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>DESeq2<span class="sc">::</span><span class="fu">resultsNames</span>(dds_miRNA) <span class="co"># lists the coefficients</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Intercept"                        "MGC_Three_MGC.Low_vs_MGC.High"   
-[3] "MGC_Three_MGC.Medium_vs_MGC.High"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Retrieving results</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>res_miRNA <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">results</span>(dds_miRNA, <span class="at">name=</span><span class="st">"MGC_Three_MGC.Low_vs_MGC.High"</span>)</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Change sign of Log2Fold Change</span></span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>res_miRNA<span class="sc">$</span>log2FoldChange  <span class="ot">=</span> <span class="sc">-</span>res_miRNA<span class="sc">$</span>log2FoldChange</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>EnhancedVolcano<span class="sc">::</span><span class="fu">EnhancedVolcano</span>(res_miRNA,</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">lab =</span> <span class="fu">rownames</span>(res_miRNA),</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">x =</span> <span class="st">"log2FoldChange"</span>,</span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="st">"padj"</span>,</span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">title =</span> <span class="st">""</span>,</span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">subtitle =</span> <span class="st">"MGC Low vs. MGC High"</span>,</span>
-<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">xlab =</span> <span class="fu">bquote</span>(<span class="sc">~</span>Log[<span class="dv">2</span>]<span class="sc">~</span> <span class="st">"fold change"</span>),</span>
-<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">ylab =</span> <span class="fu">bquote</span>(<span class="sc">~-</span>Log[<span class="dv">10</span>]<span class="sc">~</span>adjusted<span class="sc">~</span><span class="fu">italic</span>(P)),</span>
-<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">pCutoff =</span> <span class="fl">0.05</span>,</span>
-<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">FCcutoff =</span> <span class="fl">0.25</span>,</span>
-<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">colAlpha =</span> <span class="dv">1</span>,</span>
-<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">legendPosition =</span> <span class="st">""</span>,</span>
-<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">legendLabSize =</span> <span class="dv">10</span>,</span>
-<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">legendIconSize =</span> <span class="fl">3.0</span>,</span>
-<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">border =</span> <span class="st">"full"</span>,</span>
-<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">borderColour =</span> <span class="st">"black"</span>,</span>
-<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a>                <span class="at">gridlines.major =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a>                <span class="at">gridlines.minor =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a>                <span class="at">drawConnectors =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a>                <span class="at">widthConnectors =</span> <span class="dv">1</span>,</span>
-<span id="cb54-21"><a href="#cb54-21" aria-hidden="true" tabindex="-1"></a>                <span class="at">colConnectors =</span> <span class="st">'black'</span>,</span>
-<span id="cb54-22"><a href="#cb54-22" aria-hidden="true" tabindex="-1"></a>                <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.5</span>,<span class="fl">1.5</span>) ,</span>
-<span id="cb54-23"><a href="#cb54-23" aria-hidden="true" tabindex="-1"></a>                <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">2.5</span>) ,</span>
-<span id="cb54-24"><a href="#cb54-24" aria-hidden="true" tabindex="-1"></a>                <span class="at">boxedLabels =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb54-25"><a href="#cb54-25" aria-hidden="true" tabindex="-1"></a>                <span class="at">labCol =</span> <span class="st">'black'</span>,</span>
-<span id="cb54-26"><a href="#cb54-26" aria-hidden="true" tabindex="-1"></a>                <span class="at">labFace =</span> <span class="st">'bold'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="TCGA_Analysis_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid" width="960"></p>
-</div>
-</div>
-</section>
-<section id="session-info" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Session Info</h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
@@ -1038,7 +545,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       Europe/Paris
- date     2024-01-22
+ date     2024-01-23
  pandoc   3.1.1 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
@@ -1065,14 +572,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  clusterProfiler        4.4.4     2022-06-21 [1] Bioconductor
  codetools              0.2-19    2023-02-01 [1] CRAN (R 4.2.0)
  colorspace             2.1-0     2023-01-23 [1] CRAN (R 4.2.0)
- commonmark             1.9.0     2023-03-17 [1] CRAN (R 4.2.0)
  crayon                 1.5.2     2022-09-29 [1] CRAN (R 4.2.0)
  data.table             1.14.8    2023-02-17 [1] CRAN (R 4.2.0)
  DBI                    1.1.3     2022-06-18 [1] CRAN (R 4.2.0)
  DelayedArray           0.24.0    2022-11-01 [1] Bioconductor
  DESeq2                 1.36.0    2022-04-26 [1] Bioconductor
  digest                 0.6.32    2023-06-26 [1] CRAN (R 4.2.0)
- DNAcopy                1.70.0    2022-04-26 [1] Bioconductor
  DO.db                  2.9       2022-10-07 [1] Bioconductor
  DOSE                   3.22.1    2022-08-30 [1] Bioconductor
  downloader             0.4       2015-07-09 [1] CRAN (R 4.2.0)
@@ -1080,7 +585,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  EnhancedVolcano        1.14.0    2022-04-26 [1] Bioconductor
  enrichplot             1.16.2    2022-08-30 [1] Bioconductor
  evaluate               0.21      2023-05-05 [1] CRAN (R 4.2.0)
- exactRankTests         0.8-35    2022-04-26 [1] CRAN (R 4.2.0)
  fansi                  1.0.4     2023-01-22 [1] CRAN (R 4.2.1)
  farver                 2.1.1     2022-07-06 [1] CRAN (R 4.2.0)
  fastmap                1.1.1     2023-02-24 [1] CRAN (R 4.2.0)
@@ -1100,13 +604,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  ggnewscale             0.4.9     2023-05-25 [1] CRAN (R 4.2.0)
  ggplot2              * 3.4.3     2023-08-14 [1] CRAN (R 4.2.1)
  ggplotify              0.1.1     2023-06-27 [1] CRAN (R 4.2.0)
- ggprism                1.0.4     2022-11-04 [1] CRAN (R 4.2.1)
  ggpubr                 0.6.0     2023-02-10 [1] CRAN (R 4.2.0)
  ggraph                 2.1.0     2022-10-09 [1] CRAN (R 4.2.1)
  ggrepel                0.9.3     2023-02-03 [1] CRAN (R 4.2.0)
- ggsci                  3.0.0     2023-03-08 [1] CRAN (R 4.2.0)
  ggsignif               0.6.4     2022-10-13 [1] CRAN (R 4.2.1)
- ggtext                 0.1.2     2022-09-16 [1] CRAN (R 4.2.0)
  ggtree                 3.4.4     2022-09-27 [1] Bioconductor
  glue                   1.6.2     2022-02-24 [1] CRAN (R 4.2.0)
  GO.db                  3.15.0    2022-10-07 [1] Bioconductor
@@ -1114,7 +615,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  graphlayouts           1.0.0     2023-05-01 [1] CRAN (R 4.2.0)
  gridExtra              2.3       2017-09-09 [1] CRAN (R 4.2.0)
  gridGraphics           0.5-1     2020-12-13 [1] CRAN (R 4.2.0)
- gridtext               0.1.5     2022-09-16 [1] CRAN (R 4.2.0)
  gtable                 0.3.4     2023-08-21 [1] CRAN (R 4.2.1)
  hms                    1.1.3     2023-03-21 [1] CRAN (R 4.2.0)
  htmltools              0.5.5     2023-03-23 [1] CRAN (R 4.2.0)
@@ -1124,8 +624,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  IRanges                2.32.0    2022-11-01 [1] Bioconductor
  jsonlite               1.8.7     2023-06-29 [1] CRAN (R 4.2.0)
  KEGGREST               1.36.3    2022-07-14 [1] Bioconductor
- km.ci                  0.5-6     2022-04-06 [1] CRAN (R 4.2.0)
- KMsurv                 0.1-5     2012-12-03 [1] CRAN (R 4.2.0)
  knitr                  1.43      2023-05-25 [1] CRAN (R 4.2.0)
  labeling               0.4.3     2023-08-29 [1] CRAN (R 4.2.1)
  lambda.r               1.2.4     2019-09-18 [1] CRAN (R 4.2.0)
@@ -1133,18 +631,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  lazyeval               0.2.2     2019-03-15 [1] CRAN (R 4.2.0)
  lifecycle              1.0.3     2022-10-07 [1] CRAN (R 4.2.1)
  locfit                 1.5-9.8   2023-06-11 [1] CRAN (R 4.2.0)
- maftools               2.12.0    2022-04-26 [1] Bioconductor
  magrittr               2.0.3     2022-03-30 [1] CRAN (R 4.2.0)
- markdown               1.7       2023-05-16 [1] CRAN (R 4.2.0)
  MASS                   7.3-60    2023-05-04 [1] CRAN (R 4.2.0)
  Matrix                 1.5-4.1   2023-05-18 [1] CRAN (R 4.2.0)
  MatrixGenerics         1.10.0    2022-11-01 [1] Bioconductor
  matrixStats            1.0.0     2023-06-02 [1] CRAN (R 4.2.0)
- maxstat                0.7-25    2017-03-02 [1] CRAN (R 4.2.0)
  memoise                2.0.1     2021-11-26 [1] CRAN (R 4.2.0)
- mgcv                   1.8-42    2023-03-02 [1] CRAN (R 4.2.0)
  munsell                0.5.0     2018-06-12 [1] CRAN (R 4.2.0)
- mvtnorm                1.2-2     2023-06-08 [1] CRAN (R 4.2.0)
  nlme                   3.1-162   2023-01-31 [1] CRAN (R 4.2.0)
  org.Hs.eg.db           3.15.0    2022-10-07 [1] Bioconductor
  patchwork              1.1.2     2022-08-19 [1] CRAN (R 4.2.0)
@@ -1175,8 +668,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  stringr                1.5.0     2022-12-02 [1] CRAN (R 4.2.0)
  SummarizedExperiment   1.28.0    2022-11-01 [1] Bioconductor
  survival               3.5-5     2023-03-12 [1] CRAN (R 4.2.0)
- survminer              0.4.9     2021-03-09 [1] CRAN (R 4.2.0)
- survMisc               0.5.6     2022-04-07 [1] CRAN (R 4.2.0)
  tibble                 3.2.1     2023-03-20 [1] CRAN (R 4.2.0)
  tidygraph              1.2.3     2023-02-01 [1] CRAN (R 4.2.0)
  tidyr                  1.3.0     2023-01-24 [1] CRAN (R 4.2.0)
@@ -1194,13 +685,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  withr                  2.5.1     2023-09-26 [1] CRAN (R 4.2.1)
  xfun                   0.39      2023-04-20 [1] CRAN (R 4.2.0)
  XML                    3.99-0.14 2023-03-19 [1] CRAN (R 4.2.0)
- xml2                   1.3.4     2023-04-27 [1] CRAN (R 4.2.0)
  xtable                 1.8-4     2019-04-21 [1] CRAN (R 4.2.0)
  XVector                0.38.0    2022-11-01 [1] Bioconductor
  yaml                   2.3.7     2023-01-23 [1] CRAN (R 4.2.0)
  yulab.utils            0.0.6     2022-12-20 [1] CRAN (R 4.2.0)
  zlibbioc               1.44.0    2022-11-01 [1] Bioconductor
- zoo                    1.8-12    2023-04-13 [1] CRAN (R 4.2.0)
 
  [1] /Library/Frameworks/R.framework/Versions/4.2/Resources/library
 
